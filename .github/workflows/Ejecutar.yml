@@ -1,0 +1,45 @@
+name: Check Abonoteatro persistente
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Se ejecuta cada hora (puedes cambiarlo)
+  workflow_dispatch:      # Botón para ejecutar manualmente
+
+permissions:
+  contents: write         # PERMISO CRUCIAL: Permite a la Action escribir en tu repositorio
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Ejecutar Scraper PowerShell
+        shell: pwsh
+        run: |
+          ./script.ps1
+        env:
+          # Mapeo de tus Secrets a variables de entorno
+          ABONO_USER: ${{ secrets.ABONO_USER }}
+          ABONO_PASS: ${{ secrets.ABONO_PASS }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          URL_BASE: ${{ secrets.URL_BASE }}
+          URL_DETALLE: ${{ secrets.URL_DETALLE }}
+          URL_LOGIN: ${{ secrets.URL_LOGIN }}
+          URL_TEATRO: ${{ secrets.URL_TEATRO }}
+          URL_REFERER: ${{ secrets.URL_REFERER }}
+
+      - name: Guardar cambios en los ficheros (Persistencia)
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Añadimos los archivos que pueden haber cambiado
+          git add eventos_anteriores.csv Data.txt envios.csv
+          
+          # Solo hacemos commit si hay cambios reales para evitar errores
+          git commit -m "Actualización automática: $(Get-Date -Format 'yyyy-MM-dd HH:mm')" || exit 0
+          
+          # Subimos los cambios al repositorio
+          git push
