@@ -2,11 +2,11 @@ name: Check Abonoteatro cada 10 min
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
-  workflow_dispatch:
+    - cron: '*/10 * * * *' # Se ejecuta cada 10 minutos
+  workflow_dispatch:      # Permite ejecutarlo a mano
 
 permissions:
-  contents: write
+  contents: write         # Permiso para guardar cambios en los archivos
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       - name: Ejecutar Scraper PowerShell
         shell: pwsh
         run: |
-          ./ScheduleScript.ps1
+          ./script.ps1
         env:
           ABONO_USER: ${{ secrets.ABONO_USER }}
           ABONO_PASS: ${{ secrets.ABONO_PASS }}
@@ -30,9 +30,21 @@ jobs:
           URL_REFERER: ${{ secrets.URL_REFERER }}
 
       - name: Guardar cambios en los ficheros (Persistencia)
+        shell: pwsh
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add eventos_anteriores.csv Data.txt envios.csv
-          git commit -m "Auto-update: $(Get-Date -Format 'yyyy-MM-dd HH:mm')" || exit 0
-          git push
+          
+          # Añadimos solo los archivos que sabemos que existen y pueden cambiar
+          # Si alguno no existe todavía, git lo creará o ignorará el error
+          git add eventos_anteriores.csv Data.txt
+          
+          # Comprobamos si hay cambios reales antes de hacer el commit
+          $status = git status --porcelain
+          if ($status) {
+              Write-Host "Se han detectado cambios en los datos. Guardando..."
+              git commit -m "Auto-update: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+              git push
+          } else {
+              Write-Host "No hay cambios nuevos que guardar."
+          }
