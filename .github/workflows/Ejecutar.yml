@@ -18,7 +18,7 @@ jobs:
       - name: Ejecutar Scraper PowerShell
         shell: pwsh
         run: |
-          ./script.ps1
+          ./ScheduleScript.ps1
         env:
           ABONO_USER: ${{ secrets.ABONO_USER }}
           ABONO_PASS: ${{ secrets.ABONO_PASS }}
