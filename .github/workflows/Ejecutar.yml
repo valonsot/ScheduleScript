@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '*/10 * * * *' # Se ejecuta cada 10 minutos
   workflow_dispatch:      # Permite ejecutarlo a mano
+  repository_dispatch:     # <--- ESTO DEBE ESTAR AQUÍ
+    types: [lanzar_script] # <--- ESTE NOMBRE ES IMPORTANTE
 
 permissions:
   contents: write         # Permiso para guardar cambios en los archivos
