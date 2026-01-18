@@ -190,7 +190,7 @@ $textoFechas
             } catch {
                 $l = "{0},{1},""{2}"",false,""{3}""" -f (Get-Date -Format "yyyy-MM-dd HH:mm:ss"), $cid.id, ($ne.Titulo -replace '"','""'), ($_.Exception.Message -replace '"','""')
             }
-            Add-Content $PTH_LOG $l
+            #Add-Content $PTH_LOG $l
         }
     }
 }
