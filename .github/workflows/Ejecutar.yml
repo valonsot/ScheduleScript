@@ -1,12 +1,12 @@
-name: Check Abonoteatro persistente
+name: Check Abonoteatro cada 10 min
 
 on:
   schedule:
-    - cron: '0 * * * *' # Se ejecuta cada hora (puedes cambiarlo)
-  workflow_dispatch:      # Botón para ejecutar manualmente
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: write         # PERMISO CRUCIAL: Permite a la Action escribir en tu repositorio
+  contents: write
 
 jobs:
   build:
@@ -20,7 +20,6 @@ jobs:
         run: |
           ./script.ps1
         env:
-          # Mapeo de tus Secrets a variables de entorno
           ABONO_USER: ${{ secrets.ABONO_USER }}
           ABONO_PASS: ${{ secrets.ABONO_PASS }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
@@ -34,12 +33,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          # Añadimos los archivos que pueden haber cambiado
           git add eventos_anteriores.csv Data.txt envios.csv
-          
-          # Solo hacemos commit si hay cambios reales para evitar errores
-          git commit -m "Actualización automática: $(Get-Date -Format 'yyyy-MM-dd HH:mm')" || exit 0
-          
-          # Subimos los cambios al repositorio
+          git commit -m "Auto-update: $(Get-Date -Format 'yyyy-MM-dd HH:mm')" || exit 0
           git push
