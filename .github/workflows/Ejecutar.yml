@@ -2,7 +2,7 @@ name: Check Abonoteatro cada 10 min
 
 on:
   schedule:
-    - cron: '*/8 * * * *' # Se ejecuta cada 10 minutos
+    - cron: '*/10 * * * *' # Se ejecuta cada 10 minutos
   workflow_dispatch:      # Permite ejecutarlo a mano
 
 permissions:
