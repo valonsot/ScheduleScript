@@ -1,3 +1,12 @@
+# 1. Definir la ruta y el nombre del archivo con fecha y hora
+$fecha = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+$logFile = "transcripcion_$fecha.txt"
+
+# 2. Iniciar la transcripción
+# Esto grabará todo lo que salga en la consola a partir de aquí
+Start-Transcript -Path $logFile
+
+try {
 $CFG_USR = $env:ABONO_USER
 $CFG_PWD = $env:ABONO_PASS
 $CFG_TKN = $env:TELEGRAM_TOKEN
@@ -194,3 +203,11 @@ $textoFechas
         }
     }
 }
+}
+finally {
+    # 3. Detener la transcripción (es vital para que el archivo se guarde y cierre)
+    Stop-Transcript
+
+    # 4. Subir el archivo generado a GitHub
+    Write-Host "Subiendo transcripción a GitHub..."
+
