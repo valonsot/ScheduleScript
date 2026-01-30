@@ -77,7 +77,7 @@ try {
     return
 }
 
-$pattern = '(?i)<iframe\s+[^>]*src="(https://programacion\.abonoteatro\.com/catalogo/teatros2\.php\?token=[^"]+)"[^>]*width="1500px"[^>]*allow="geolocation"'
+$pattern = '(?i)<iframe\s+[^>]*src="(https://programacion\.abonoteatro\.com/catalogo/teatros\d\.php\?token=[^"]+)"'
 
 if ($paginaInterna.Content -match $pattern) {
     $urlCatalogo = $Matches[1]
