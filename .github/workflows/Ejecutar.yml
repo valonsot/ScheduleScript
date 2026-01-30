@@ -35,14 +35,17 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Añadimos los CSV, el Data.txt y todos los archivos de log generados
-          git add eventos_anteriores.csv Data.txt log_*.txt
+          # 1. Añadimos los archivos específicos y cualquier transcripción que empiece por "transcripcion_"
+          # Usamos un try/catch o simplemente añadimos lo que exista
+          git add eventos_anteriores.csv Data.txt
+          git add transcripcion_*.txt
           
+          # 2. Comprobamos si hay algo nuevo en el área de preparación (staging)
           $status = git status --porcelain
           if ($status) {
-              Write-Host "Se han detectado cambios y nuevos logs. Guardando..."
+              Write-Host "Se han detectado cambios. Guardando en GitHub..."
               git commit -m "Auto-update y Log: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
               git push
           } else {
-              Write-Host "No hay cambios nuevos que guardar."
+              Write-Host "No hay cambios para subir."
           }
