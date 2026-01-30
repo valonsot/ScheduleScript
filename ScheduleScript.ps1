@@ -1,4 +1,7 @@
 # 1. Definir la ruta y el nombre del archivo con fecha y hora
+
+# Borra archivos de transcripción que tengan más de 1 día de antigüedad
+Get-ChildItem "transcripcion_*.txt" | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-1) } | Remove-Item
 $fecha = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $logFile = "transcripcion_$fecha.txt"
 
