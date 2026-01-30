@@ -210,4 +210,5 @@ finally {
 
     # 4. Subir el archivo generado a GitHub
     Write-Host "Subiendo transcripción a GitHub..."
+    }
 
