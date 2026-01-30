@@ -111,7 +111,6 @@ if (-not $mySession) { $mySession = New-Object Microsoft.PowerShell.Commands.Web
 
 $respuesta = Invoke-WebRequest -Uri $urlCatalogo -WebSession $mySession -Headers @{"Referer" = "$URL_BASE/"} -UserAgent $GLB_UA
 write-host "he metido las cookies"
-$respuesta
 $html = $respuesta.Content
 $regexEvento = '<!--\s*INICIO EVENTO\s*-->[\s\S]*?<!--\s*FIN EVENTO\s*-->[\s\S]*?<input[^>]*value="([^"]+)"'
 $bloquesEventos = [regex]::Matches($html, $regexEvento)
