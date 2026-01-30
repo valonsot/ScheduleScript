@@ -1,12 +1,12 @@
 name: Check Abonoteatro cada 10 min
 
 on:
-  workflow_dispatch:      # Permite ejecutarlo a mano
-  repository_dispatch:     # <--- ESTO DEBE ESTAR AQUÍ
-    types: [lanzar_script] # <--- ESTE NOMBRE ES IMPORTANTE
+  workflow_dispatch:
+  repository_dispatch:
+    types: [lanzar_script]
 
 permissions:
-  contents: write         # Permiso para guardar cambios en los archivos
+  contents: write
 
 jobs:
   build:
@@ -35,15 +35,13 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Añadimos solo los archivos que sabemos que existen y pueden cambiar
-          # Si alguno no existe todavía, git lo creará o ignorará el error
-          git add eventos_anteriores.csv Data.txt
+          # Añadimos los CSV, el Data.txt y todos los archivos de log generados
+          git add eventos_anteriores.csv Data.txt log_*.txt
           
-          # Comprobamos si hay cambios reales antes de hacer el commit
           $status = git status --porcelain
           if ($status) {
-              Write-Host "Se han detectado cambios en los datos. Guardando..."
-              git commit -m "Auto-update: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+              Write-Host "Se han detectado cambios y nuevos logs. Guardando..."
+              git commit -m "Auto-update y Log: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
               git push
           } else {
               Write-Host "No hay cambios nuevos que guardar."
