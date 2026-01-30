@@ -70,6 +70,8 @@ $headersLogin = @{
 try {
     $response = Invoke-WebRequest -Uri $URL_LGN -Method Post -Body $bodyLogin -Headers $headersLogin -UserAgent $GLB_UA -SessionVariable "mySession"
     $paginaInterna = Invoke-WebRequest -Uri $URL_TRT -WebSession $mySession -Method Get
+    write-host "he conectado con ...."
+    $response
 } catch {
     return
 }
@@ -103,6 +105,8 @@ Add-AbonoCookie "version" $version
 if (-not $mySession) { $mySession = New-Object Microsoft.PowerShell.Commands.WebRequestSession }
 
 $respuesta = Invoke-WebRequest -Uri $urlCatalogo -WebSession $mySession -Headers @{"Referer" = "$URL_BASE/"} -UserAgent $GLB_UA
+write-host "he metido las cookies"
+$respuesta
 $html = $respuesta.Content
 $regexEvento = '<!--\s*INICIO EVENTO\s*-->[\s\S]*?<!--\s*FIN EVENTO\s*-->[\s\S]*?<input[^>]*value="([^"]+)"'
 $bloquesEventos = [regex]::Matches($html, $regexEvento)
@@ -154,6 +158,8 @@ foreach ($bloque in $bloquesEventos) {
         EventId = $eventId
     }
 }
+
+$eventos
 
 if (Test-Path $PTH_EVT) {
     $eventosAnteriores = Import-Csv $PTH_EVT
