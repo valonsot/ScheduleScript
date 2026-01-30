@@ -216,10 +216,17 @@ $textoFechas
 }
 }
 finally {
-    # 3. Detener la transcripción (es vital para que el archivo se guarde y cierre)
-    Stop-Transcript
+   Stop-Transcript
+    Write-Host "Limpiando logs antiguos (mayores a 60 minutos)..."
+    
+    # 1. Definir el límite de tiempo (Hace 1 hora)
+    $limiteHora = (Get-Date).AddHours(-1)
+    
+    # 2. Buscar y borrar archivos que coincidan con el patrón y sean viejos
+    Get-ChildItem "transcripcion_*.txt" | Where-Object { 
+        $_.LastWriteTime -lt $limiteHora 
+    } | Remove-Item -Force -ErrorAction SilentlyContinue
 
-    # 4. Subir el archivo generado a GitHub
-    Write-Host "Subiendo transcripción a GitHub..."
-    }
+    Write-Host "Limpieza completada."
+}
 
