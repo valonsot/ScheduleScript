@@ -73,6 +73,7 @@ try {
     write-host "he conectado con ...."
     $response
 } catch {
+    write-host "no conecto con....."
     return
 }
 
@@ -81,6 +82,7 @@ $pattern = '(?i)<iframe\s+[^>]*src="(https://programacion\.abonoteatro\.com/cata
 if ($paginaInterna.Content -match $pattern) {
     $urlCatalogo = $Matches[1]
 } else {
+    write-host "no encuentro el catalogo"
     return
 }
 
