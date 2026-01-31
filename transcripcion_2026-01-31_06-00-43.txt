@@ -1,0 +1,55 @@
+**********************
+PowerShell transcript start
+Start time: 20260131060043
+Username: runnervmzwdec\runneradmin
+RunAs User: runnervmzwdec\runneradmin
+Configuration Name: 
+Machine: runnervmzwdec (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\6707ed1f-f934-4eb7-9cd5-97ea5d72fe89.ps1'
+Process ID: 1088
+PSVersion: 7.4.13
+PSEdition: Core
+GitCommitId: 7.4.13
+OS: Microsoft Windows 10.0.26100
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is transcripcion_2026-01-31_06-00-43.txt
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    
+    En Mantenimiento
+    
+        body {
+            text-align: center;
+            padding: 150px;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            font-size: 50px;
+            color: #333;
+        }
+        p {
+            font-size: 20px;
+        }
+    
+
+
+    Sitio en Mantenimiento
+    Estamos trabajando para mejorar el servicio. En breve estamos de vuelta.
+
+
+
+"
+no conecto con.....
+**********************
+PowerShell transcript end
+End time: 20260131060045
+**********************
