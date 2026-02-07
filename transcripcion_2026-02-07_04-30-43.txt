@@ -1,0 +1,55 @@
+**********************
+PowerShell transcript start
+Start time: 20260207043043
+Username: runnervm9tapx\runneradmin
+RunAs User: runnervm9tapx\runneradmin
+Configuration Name: 
+Machine: runnervm9tapx (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\51f0f983-59e0-4930-b65f-ece2a4805a64.ps1'
+Process ID: 4120
+PSVersion: 7.4.13
+PSEdition: Core
+GitCommitId: 7.4.13
+OS: Microsoft Windows 10.0.26100
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is transcripcion_2026-02-07_04-30-43.txt
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    
+    En Mantenimiento
+    
+        body {
+            text-align: center;
+            padding: 150px;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            font-size: 50px;
+            color: #333;
+        }
+        p {
+            font-size: 20px;
+        }
+    
+
+
+    Sitio en Mantenimiento
+    Estamos trabajando para mejorar el servicio. En breve estamos de vuelta.
+
+
+
+"
+no conecto con.....
+**********************
+PowerShell transcript end
+End time: 20260207043045
+**********************
