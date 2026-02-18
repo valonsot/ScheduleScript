@@ -1,0 +1,29 @@
+name: Limpieza Automatica de Logs
+
+on:
+  workflow_dispatch: # Permite ejecutarlo manualmente desde la pestaña 'Actions'
+  schedule:
+    - cron: '0 0 * * *' # Se ejecuta automáticamente todos los días a medianoche
+
+jobs:
+  cleanup:
+    runs-on: windows-latest
+    permissions:
+      contents: write # IMPORTANTE: Permiso para que GitHub pueda borrar archivos del repo
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Ejecutar limpieza
+        shell: pwsh
+        run: |
+          ./limpiar_logs.ps1
+
+      - name: Guardar cambios en GitHub
+        run: |
+          git config --global user.name 'GitHub Action Bot'
+          git config --global user.email 'action@github.com'
+          git add .
+          # Solo hace commit si realmente hubo archivos borrados
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Cleanup: Borrado de transcripciones antiguas" && git push)
