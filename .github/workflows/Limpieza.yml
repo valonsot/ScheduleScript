@@ -18,7 +18,7 @@ jobs:
       - name: Ejecutar limpieza
         shell: pwsh
         run: |
-          ./limpiar_logs.ps1
+          ./Clear-Logs.ps1
 
       - name: Guardar cambios en GitHub
         run: |
