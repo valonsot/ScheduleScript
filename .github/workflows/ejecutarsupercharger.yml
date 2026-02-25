@@ -4,10 +4,12 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [lanzar_script]
+  schedule:
+    - cron: '*/10 * * * *'  # Intenta lanzarse cada 10 minutos
 
 concurrency:
-  group:  ${{ github.workflow }}
-  cancel-in-progress: false 
+  group: ${{ github.workflow }}
+  cancel-in-progress: false   # CLAVE: Evita que el nuevo cancele al que lleva 2h corriendo
 
 permissions:
   contents: write
@@ -34,21 +36,19 @@ jobs:
           URL_REFERER: ${{ secrets.URL_REFERER }}
 
       - name: Guardar cambios en los ficheros (Persistencia)
-        if: always()   # <--- MUY IMPORTANTE: Se ejecutará SIEMPRE, incluso si el script anterior falla a medias.
+        if: always()
         shell: pwsh
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 'git add -A' es clave: detecta archivos nuevos, modificados Y BORRADOS
           git add -A
           
-          # Comprobamos si hay cambios (tanto nuevos logs como borrados, CSVs y txt)
           $status = git status --porcelain
           if ($status) {
-              Write-Host "Sincronizando CSV, txt y logs con GitHub..."
-              git commit -m "Auto-cleanup y actualizacion de datos: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+              Write-Host "Sincronizando CSV, txt y logs finales con GitHub..."
+              git commit -m "Auto-cleanup y log final: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
               git push
           } else {
-              Write-Host "Sin cambios relevantes."
+              Write-Host "Sin cambios relevantes al finalizar."
           }
