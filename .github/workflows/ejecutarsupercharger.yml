@@ -1,0 +1,53 @@
+name: Check Abonoteatro cada 10 min
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [lanzar_script]
+
+concurrency:
+  group:  ${{ github.workflow }}
+  cancel-in-progress: false 
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Ejecutar Scraper PowerShell
+        shell: pwsh
+        run: |
+          ./ScheduleScriptsupercharger.ps1
+        env:
+          ABONO_USER: ${{ secrets.ABONO_USER }}
+          ABONO_PASS: ${{ secrets.ABONO_PASS }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          URL_BASE: ${{ secrets.URL_BASE }}
+          URL_DETALLE: ${{ secrets.URL_DETALLE }}
+          URL_LOGIN: ${{ secrets.URL_LOGIN }}
+          URL_TEATRO: ${{ secrets.URL_TEATRO }}
+          URL_REFERER: ${{ secrets.URL_REFERER }}
+
+      - name: Guardar cambios en los ficheros (Persistencia)
+        shell: pwsh
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 'git add -A' es clave: detecta archivos nuevos, modificados Y BORRADOS
+          git add -A
+          
+          # Comprobamos si hay cambios (tanto nuevos logs como borrados)
+          $status = git status --porcelain
+          if ($status) {
+              Write-Host "Sincronizando logs con GitHub..."
+              git commit -m "Auto-cleanup y nuevo Log: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+              git push
+          } else {
+              Write-Host "Sin cambios relevantes."
+          }
