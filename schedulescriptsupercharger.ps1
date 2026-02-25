@@ -95,7 +95,6 @@ try {
             if ($paginaInterna.Content -match $pattern) {
                 $urlCatalogo = $Matches[1]
             } else {
-                # Usamos throw en vez de return para que el bucle no muera por un fallo puntual
                 throw "No encuentro el catálogo iframe en la página interna" 
             }
 
@@ -173,7 +172,7 @@ try {
                 $eventosNuevos = $eventos
             }
 
-            # Guardamos para la siguiente iteración
+            # Guardamos para la siguiente iteración de forma local
             $eventos | Export-Csv $PTH_EVT -NoTypeInformation -Encoding UTF8
 
             $upd = Invoke-RestMethod -Uri "$URL_TGM/getUpdates"
@@ -188,6 +187,7 @@ try {
                 $finalIds = Get-Content $PTH_USR | ForEach-Object { if ($_ -match '(\d+)') { [pscustomobject]@{id = $matches[1]} } }
             }
 
+            # Enviar mensajes de Telegram
             if ($eventosNuevos){
                 Write-Host "¡Se han detectado $($eventosNuevos.Count) eventos nuevos! Enviando por Telegram..."
                 foreach ($ne in $eventosNuevos){
@@ -222,6 +222,29 @@ $textoFechas
             } else {
                 Write-Host "No hay eventos nuevos en esta iteración."
             }
+
+            # ==========================================================
+            # NUEVO: FORZAR SUBIDA A GITHUB EN CADA ITERACIÓN DEL BUCLE
+            # ==========================================================
+            Write-Host "Comprobando si hay cambios en el CSV o TXT para subir a GitHub..."
+            
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            
+            # Solo añadimos el CSV y el TXT para no saturar con logs temporales
+            git add $PTH_EVT
+            git add $PTH_USR
+            
+            $status = git status --porcelain
+            if ($status) {
+                Write-Host "Subiendo CSV y TXT actualizados a GitHub..."
+                git commit -m "Auto-update desde bucle: $(Get-Date -Format 'HH:mm:ss')" | Out-Null
+                git push | Out-Null
+                Write-Host "¡Subida a GitHub completada en directo!"
+            } else {
+                Write-Host "Sin cambios en los ficheros de datos, omitiendo subida."
+            }
+            # ==========================================================
 
         } catch {
             Write-Host "Error en la iteración: $($_.Exception.Message)"
