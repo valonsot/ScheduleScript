@@ -231,18 +231,24 @@ $textoFechas
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             
-            # Solo añadimos el CSV y el TXT para no saturar con logs temporales
-            git add $PTH_EVT
-            git add $PTH_USR
+            # Usamos los nombres directos en vez de variables con rutas completas
+            # Esto evita que Git de Windows se vuelva loco con las barras \ y /
+            git add eventos_anteriores.csv
+            if (Test-Path "Data.txt") { git add Data.txt }
             
-            $status = git status --porcelain
-            if ($status) {
-                Write-Host "Subiendo CSV y TXT actualizados a GitHub..."
-                git commit -m "Auto-update desde bucle: $(Get-Date -Format 'HH:mm:ss')" | Out-Null
-                git push | Out-Null
+            # Comprobamos si REALMENTE se ha modificado el CSV o el TXT
+            $staged = git diff --cached --name-only
+            
+            if ($staged) {
+                Write-Host "Se han detectado cambios reales en estos ficheros: $staged"
+                Write-Host "Subiendo a GitHub..."
+                
+                git commit -m "Auto-update desde bucle: $(Get-Date -Format 'HH:mm:ss')"
+                git push
+                
                 Write-Host "¡Subida a GitHub completada en directo!"
             } else {
-                Write-Host "Sin cambios en los ficheros de datos, omitiendo subida."
+                Write-Host "El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits."
             }
             # ==========================================================
 
