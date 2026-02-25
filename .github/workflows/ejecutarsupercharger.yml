@@ -1,4 +1,4 @@
-name: Check Abonoteatro cada 10 min
+name: Check Abonoteatro cada 2 min
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Ejecutar Scraper PowerShell
         shell: pwsh
@@ -34,6 +34,7 @@ jobs:
           URL_REFERER: ${{ secrets.URL_REFERER }}
 
       - name: Guardar cambios en los ficheros (Persistencia)
+        if: always()   # <--- MUY IMPORTANTE: Se ejecutará SIEMPRE, incluso si el script anterior falla a medias.
         shell: pwsh
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -42,11 +43,11 @@ jobs:
           # 'git add -A' es clave: detecta archivos nuevos, modificados Y BORRADOS
           git add -A
           
-          # Comprobamos si hay cambios (tanto nuevos logs como borrados)
+          # Comprobamos si hay cambios (tanto nuevos logs como borrados, CSVs y txt)
           $status = git status --porcelain
           if ($status) {
-              Write-Host "Sincronizando logs con GitHub..."
-              git commit -m "Auto-cleanup y nuevo Log: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+              Write-Host "Sincronizando CSV, txt y logs con GitHub..."
+              git commit -m "Auto-cleanup y actualizacion de datos: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
               git push
           } else {
               Write-Host "Sin cambios relevantes."
