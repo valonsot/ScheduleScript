@@ -1,0 +1,35 @@
+name: Limpiar Ejecuciones Basura (Skipped y Cancelled)
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Una vez al día
+  workflow_dispatch:     # Botón manual
+
+jobs:
+  delete-junk-runs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Borrar ejecuciones skipped y cancelled
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Definimos los dos estados que queremos borrar
+          for status in skipped cancelled; do
+            echo "Buscando ejecuciones con estado: $status..."
+            
+            # Obtenemos los IDs
+            ids=$(gh run list --repo $REPO --status $status --limit 100 --json databaseId --jq '.[].databaseId')
+            
+            if [ -z "$ids" ]; then
+              echo "No hay nada que borrar para el estado: $status"
+            else
+              echo "Borrando ejecuciones encontradas..."
+              for id in $ids; do
+                gh run delete --repo $REPO $id
+              done
+            fi
+          done
+          echo "Limpieza completada."
