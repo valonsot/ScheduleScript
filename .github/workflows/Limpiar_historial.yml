@@ -17,7 +17,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           # Definimos los dos estados que queremos borrar
-          for status in skipped cancelled; do
+          for status in skipped cancelled pending; do
             echo "Buscando ejecuciones con estado: $status..."
             
             # Obtenemos los IDs
