@@ -1,9 +1,9 @@
-name: Limpiar Ejecuciones Basura (Skipped y Cancelled)
+name: Limpiar Ejecuciones Basura (Skipped, Cancelled y Pending)
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Una vez al día
-  workflow_dispatch:     # Botón manual
+    - cron: '0 0 * * *' 
+  workflow_dispatch:     
 
 jobs:
   delete-junk-runs:
@@ -11,25 +11,43 @@ jobs:
     permissions:
       actions: write
     steps:
-      - name: Borrar ejecuciones skipped y cancelled
+      - name: Cancelar y borrar ejecuciones
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
-          # Definimos los dos estados que queremos borrar
-          for status in skipped cancelled pending; do
-            echo "Buscando ejecuciones con estado: $status..."
-            
-            # Obtenemos los IDs
+          # 1. PASO PREVIO: CANCELAR los 'pending' (GitHub no permite borrarlos directamente)
+          echo "Buscando ejecuciones pending para CANCELARLAS..."
+          ids_pending=$(gh run list --repo $REPO --status pending --limit 100 --json databaseId --jq '.[].databaseId')
+          
+          if[ -n "$ids_pending" ]; then
+            for id in $ids_pending; do
+              echo "Cancelando ejecución ID: $id..."
+              gh run cancel --repo $REPO $id || true
+            done
+            echo "Esperando 10 segundos para que GitHub procese las cancelaciones..."
+            sleep 10
+          else
+            echo "No hay ejecuciones pending."
+          fi
+
+          # 2. BORRADO FINAL: Borrar los 'skipped' y 'cancelled' 
+          # (Aquí se incluirán los 'pending' que acabamos de cancelar arriba)
+          for status in skipped cancelled; do
+            echo "Buscando ejecuciones con estado: $status para BORRAR..."
             ids=$(gh run list --repo $REPO --status $status --limit 100 --json databaseId --jq '.[].databaseId')
             
-            if [ -z "$ids" ]; then
-              echo "No hay nada que borrar para el estado: $status"
-            else
-              echo "Borrando ejecuciones encontradas..."
+            if [ -n "$ids" ]; then
               for id in $ids; do
+                echo "Borrando ejecución ID: $id..."
                 gh run delete --repo $REPO $id
               done
+            else
+              echo "No hay nada que borrar para el estado: $status"
+            fi
+          done
+          
+          echo "Limpieza total completada con éxito."
             fi
           done
           echo "Limpieza completada."
