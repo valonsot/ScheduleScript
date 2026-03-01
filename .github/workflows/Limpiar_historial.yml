@@ -20,7 +20,7 @@ jobs:
           echo "Buscando ejecuciones pending para CANCELARLAS..."
           ids_pending=$(gh run list --repo $REPO --status pending --limit 100 --json databaseId --jq '.[].databaseId')
           
-          if[ -n "$ids_pending" ]; then
+          if [ -n "$ids_pending" ]; then
             for id in $ids_pending; do
               echo "Cancelando ejecución ID: $id..."
               gh run cancel --repo $REPO $id || true
@@ -48,6 +48,3 @@ jobs:
           done
           
           echo "Limpieza total completada con éxito."
-            fi
-          done
-          echo "Limpieza completada."
