@@ -1,12 +1,12 @@
 **********************
 PowerShell transcript start
-Start time: 20260415180556
+Start time: 20260415221008
 Username: runnervm2p0d8\runneradmin
 RunAs User: runnervm2p0d8\runneradmin
 Configuration Name: 
 Machine: runnervm2p0d8 (Microsoft Windows NT 10.0.26100.0)
-Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\45b51bc5-9bae-4358-bfed-71cf40fa2705.ps1'
-Process ID: 7816
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\b0c7af49-0d26-40bf-abaf-ec8dc76a56f7.ps1'
+Process ID: 8760
 PSVersion: 7.4.14
 PSEdition: Core
 GitCommitId: 7.4.14
@@ -17,368 +17,80 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 WSManStackVersion: 3.0
 **********************
-Transcript started, output file is transcripcion_2026-04-15_18-05-56.txt
-Arrancando script continuo. Finalizará automáticamente a las: 04/15/2026 20:05:56
+Transcript started, output file is transcripcion_2026-04-15_22-10-08.txt
+Arrancando script continuo. Finalizará automáticamente a las: 04/16/2026 00:10:08
 
---- Iniciando iteración a las 18:05:56 ---
+--- Iniciando iteración a las 22:10:08 ---
 He conectado correctamente con el portal de inicio...
 He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-Se han detectado cambios reales en estos ficheros: eventos_anteriores.csv
-Subiendo a GitHub...
-
-
-¡Subida a GitHub completada en directo!
-Esperando 155 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 18:09:22 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 137 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 18:12:27 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 164 segundos (aprox 2.7 min) para despistar al bot...
-
---- Iniciando iteración a las 18:16:00 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 137 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 18:19:05 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 143 segundos (aprox 2.4 min) para despistar al bot...
-
---- Iniciando iteración a las 18:22:17 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 149 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 18:25:35 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 161 segundos (aprox 2.7 min) para despistar al bot...
-
---- Iniciando iteración a las 18:29:04 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 152 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 18:32:24 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-Se han detectado cambios reales en estos ficheros: eventos_anteriores.csv
-Subiendo a GitHub...
-
-
-¡Subida a GitHub completada en directo!
-Esperando 164 segundos (aprox 2.7 min) para despistar al bot...
-
---- Iniciando iteración a las 18:35:57 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 125 segundos (aprox 2.1 min) para despistar al bot...
-
---- Iniciando iteración a las 18:38:50 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 178 segundos (aprox 3 min) para despistar al bot...
-
---- Iniciando iteración a las 18:42:37 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 134 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 18:45:40 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 144 segundos (aprox 2.4 min) para despistar al bot...
-
---- Iniciando iteración a las 18:48:53 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-Se han detectado cambios reales en estos ficheros: eventos_anteriores.csv
-Subiendo a GitHub...
-
-
-¡Subida a GitHub completada en directo!
-Esperando 172 segundos (aprox 2.9 min) para despistar al bot...
-
---- Iniciando iteración a las 18:52:34 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 144 segundos (aprox 2.4 min) para despistar al bot...
-
---- Iniciando iteración a las 18:55:46 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 139 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 18:58:54 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 159 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 19:02:21 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-Se han detectado cambios reales en estos ficheros: eventos_anteriores.csv
-Subiendo a GitHub...
-
-
-¡Subida a GitHub completada en directo!
-Esperando 140 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 19:05:30 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 137 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 19:08:36 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 148 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 19:11:54 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 171 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 19:15:34 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 140 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 19:18:44 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 151 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 19:22:04 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 135 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 19:25:08 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 150 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 19:28:27 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 155 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 19:31:51 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-¡Se han detectado 1 eventos nuevos! Enviando por Telegram...
+Se han parseado 474 eventos en esta iteración.
+¡Se han detectado 12 eventos nuevos! Enviando por Telegram...
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
+Mensaje enviado a 35285981
+Mensaje enviado a 32705895
+Mensaje enviado a 16151694
+Mensaje enviado a 23533806
+Mensaje enviado a 2034699220
+Mensaje enviado a 550434353
 Mensaje enviado a 35285981
 Mensaje enviado a 32705895
 Mensaje enviado a 16151694
@@ -395,81 +107,90 @@ Subiendo a GitHub...
 
 
 ¡Subida a GitHub completada en directo!
-Esperando 162 segundos (aprox 2.7 min) para despistar al bot...
-
---- Iniciando iteración a las 19:35:24 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 130 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 19:38:23 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 465 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 154 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 19:41:46 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-Se han detectado cambios reales en estos ficheros: eventos_anteriores.csv
-Subiendo a GitHub...
-
-
-¡Subida a GitHub completada en directo!
-Esperando 151 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 19:45:06 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 149 segundos (aprox 2.5 min) para despistar al bot...
-
---- Iniciando iteración a las 19:48:23 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
 Esperando 171 segundos (aprox 2.8 min) para despistar al bot...
 
---- Iniciando iteración a las 19:52:03 ---
+--- Iniciando iteración a las 22:14:38 ---
 He conectado correctamente con el portal de inicio...
 He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 125 segundos (aprox 2.1 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:17:49 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 144 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:21:17 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 168 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:25:11 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 180 segundos (aprox 3 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:29:16 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 129 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:32:37 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 172 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:36:34 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
 No hay eventos nuevos en esta iteración.
 Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
@@ -479,10 +200,10 @@ Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
 Esperando 159 segundos (aprox 2.6 min) para despistar al bot...
 
---- Iniciando iteración a las 19:55:30 ---
+--- Iniciando iteración a las 22:40:18 ---
 He conectado correctamente con el portal de inicio...
 He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
+Se han parseado 474 eventos en esta iteración.
 No hay eventos nuevos en esta iteración.
 Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
@@ -490,12 +211,12 @@ Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
 
 El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 133 segundos (aprox 2.2 min) para despistar al bot...
+Esperando 177 segundos (aprox 3 min) para despistar al bot...
 
---- Iniciando iteración a las 19:58:32 ---
+--- Iniciando iteración a las 22:44:20 ---
 He conectado correctamente con el portal de inicio...
 He metido las cookies y recuperado el catálogo...
-Se han parseado 464 eventos en esta iteración.
+Se han parseado 474 eventos en esta iteración.
 No hay eventos nuevos en esta iteración.
 Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
@@ -503,29 +224,12 @@ Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
 
 El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 120 segundos (aprox 2 min) para despistar al bot...
+Esperando 153 segundos (aprox 2.6 min) para despistar al bot...
 
---- Iniciando iteración a las 20:01:20 ---
+--- Iniciando iteración a las 22:47:58 ---
 He conectado correctamente con el portal de inicio...
 He metido las cookies y recuperado el catálogo...
-Se han parseado 463 eventos en esta iteración.
-No hay eventos nuevos en esta iteración.
-Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
-
-
-
-
-Se han detectado cambios reales en estos ficheros: eventos_anteriores.csv
-Subiendo a GitHub...
-
-
-¡Subida a GitHub completada en directo!
-Esperando 166 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 20:04:56 ---
-He conectado correctamente con el portal de inicio...
-He metido las cookies y recuperado el catálogo...
-Se han parseado 463 eventos en esta iteración.
+Se han parseado 474 eventos en esta iteración.
 No hay eventos nuevos en esta iteración.
 Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
@@ -533,9 +237,295 @@ Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
 
 
 El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
-Esperando 157 segundos (aprox 2.6 min) para despistar al bot...
+Esperando 140 segundos (aprox 2.3 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:51:23 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 126 segundos (aprox 2.1 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:54:34 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 124 segundos (aprox 2.1 min) para despistar al bot...
+
+--- Iniciando iteración a las 22:57:42 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 168 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:01:33 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 152 segundos (aprox 2.5 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:05:09 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 136 segundos (aprox 2.3 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:08:30 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 124 segundos (aprox 2.1 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:11:37 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 175 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:15:37 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 144 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:19:04 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 143 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:22:32 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 145 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:26:02 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 158 segundos (aprox 2.6 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:29:44 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 151 segundos (aprox 2.5 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:33:17 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 175 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:37:17 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 142 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:40:44 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 170 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:44:39 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 149 segundos (aprox 2.5 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:48:11 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 170 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:52:05 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 131 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:55:21 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 131 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 23:58:36 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 178 segundos (aprox 3 min) para despistar al bot...
+
+--- Iniciando iteración a las 00:02:39 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 178 segundos (aprox 3 min) para despistar al bot...
+
+--- Iniciando iteración a las 00:06:41 ---
+He conectado correctamente con el portal de inicio...
+He metido las cookies y recuperado el catálogo...
+Se han parseado 474 eventos en esta iteración.
+No hay eventos nuevos en esta iteración.
+Comprobando si hay cambios en el CSV o TXT para subir a GitHub...
+
+
+
+
+El contenido del CSV no ha cambiado respecto a la anterior iteración. Omitiendo subida para no hacer spam de commits.
+Esperando 139 segundos (aprox 2.3 min) para despistar al bot...
 Han pasado las 2 horas. Finalizando ejecución correctamente.
 **********************
 PowerShell transcript end
-End time: 20260415200821
+End time: 20260416001038
 **********************
