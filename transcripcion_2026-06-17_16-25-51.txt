@@ -1,26 +1,26 @@
 **********************
 PowerShell transcript start
-Start time: 20260617123540
-Username: runnervmhv6ak\runneradmin
-RunAs User: runnervmhv6ak\runneradmin
+Start time: 20260617162551
+Username: runnervmih882\runneradmin
+RunAs User: runnervmih882\runneradmin
 Configuration Name: 
-Machine: runnervmhv6ak (Microsoft Windows NT 10.0.26100.0)
-Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\ae2b71cf-8f0d-4140-8b9a-857b3c587d37.ps1'
-Process ID: 3456
-PSVersion: 7.4.16
+Machine: runnervmih882 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\15130d81-3449-4676-aa09-b74b3136b34e.ps1'
+Process ID: 5188
+PSVersion: 7.6.2
 PSEdition: Core
-GitCommitId: 7.4.16
+GitCommitId: 7.6.2
 OS: Microsoft Windows 10.0.26100
 Platform: Win32NT
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
-PSRemotingProtocolVersion: 2.3
+PSRemotingProtocolVersion: 2.4
 SerializationVersion: 1.1.0.1
 WSManStackVersion: 3.0
 **********************
-Transcript started, output file is transcripcion_2026-06-17_12-35-40.txt
-Arrancando script continuo. Finalizará automáticamente a las: 06/17/2026 14:35:40
+Transcript started, output file is transcripcion_2026-06-17_16-25-51.txt
+Arrancando script continuo. Finalizará automáticamente a las: 06/17/2026 18:25:51
 
---- Iniciando iteración a las 12:35:40 ---
+--- Iniciando iteración a las 16:25:51 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -105,1314 +105,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 157 segundos (aprox 2.6 min) para despistar al bot...
+Esperando 178 segundos (aprox 3 min) para despistar al bot...
 
---- Iniciando iteración a las 12:38:22 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 143 segundos (aprox 2.4 min) para despistar al bot...
-
---- Iniciando iteración a las 12:40:45 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 158 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 12:43:23 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 180 segundos (aprox 3 min) para despistar al bot...
-
---- Iniciando iteración a las 12:46:24 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 145 segundos (aprox 2.4 min) para despistar al bot...
-
---- Iniciando iteración a las 12:48:49 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 167 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 12:51:37 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 120 segundos (aprox 2 min) para despistar al bot...
-
---- Iniciando iteración a las 12:53:37 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 173 segundos (aprox 2.9 min) para despistar al bot...
-
---- Iniciando iteración a las 12:56:30 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 173 segundos (aprox 2.9 min) para despistar al bot...
-
---- Iniciando iteración a las 12:59:24 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 138 segundos (aprox 2.3 min) para despistar al bot...
-
---- Iniciando iteración a las 13:01:42 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 134 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 13:03:57 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 168 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 13:06:45 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 164 segundos (aprox 2.7 min) para despistar al bot...
-
---- Iniciando iteración a las 13:09:30 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 179 segundos (aprox 3 min) para despistar al bot...
-
---- Iniciando iteración a las 13:12:29 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 168 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 13:15:17 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 176 segundos (aprox 2.9 min) para despistar al bot...
-
---- Iniciando iteración a las 13:18:14 ---
+--- Iniciando iteración a las 16:28:52 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -1499,7 +194,7 @@ PS>TerminatingError(Invoke-WebRequest): "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
 Esperando 142 segundos (aprox 2.4 min) para despistar al bot...
 
---- Iniciando iteración a las 13:20:36 ---
+--- Iniciando iteración a las 16:31:15 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -1584,9 +279,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 153 segundos (aprox 2.6 min) para despistar al bot...
+Esperando 126 segundos (aprox 2.1 min) para despistar al bot...
 
---- Iniciando iteración a las 13:23:10 ---
+--- Iniciando iteración a las 16:33:21 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -1671,705 +366,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 168 segundos (aprox 2.8 min) para despistar al bot...
+Esperando 123 segundos (aprox 2 min) para despistar al bot...
 
---- Iniciando iteración a las 13:25:58 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 122 segundos (aprox 2 min) para despistar al bot...
-
---- Iniciando iteración a las 13:28:00 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 159 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 13:30:40 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 167 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 13:33:27 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 159 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 13:36:07 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 179 segundos (aprox 3 min) para despistar al bot...
-
---- Iniciando iteración a las 13:39:06 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 131 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 13:41:17 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 155 segundos (aprox 2.6 min) para despistar al bot...
-
---- Iniciando iteración a las 13:43:53 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 127 segundos (aprox 2.1 min) para despistar al bot...
-
---- Iniciando iteración a las 13:46:00 ---
+--- Iniciando iteración a las 16:35:25 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -2456,7 +455,7 @@ PS>TerminatingError(Invoke-WebRequest): "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
 Esperando 147 segundos (aprox 2.4 min) para despistar al bot...
 
---- Iniciando iteración a las 13:48:28 ---
+--- Iniciando iteración a las 16:37:52 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -2541,9 +540,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 165 segundos (aprox 2.8 min) para despistar al bot...
+Esperando 142 segundos (aprox 2.4 min) para despistar al bot...
 
---- Iniciando iteración a las 13:51:13 ---
+--- Iniciando iteración a las 16:40:15 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -2628,357 +627,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 120 segundos (aprox 2 min) para despistar al bot...
+Esperando 155 segundos (aprox 2.6 min) para despistar al bot...
 
---- Iniciando iteración a las 13:53:13 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 130 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 13:55:24 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 134 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 13:57:38 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 124 segundos (aprox 2.1 min) para despistar al bot...
-
---- Iniciando iteración a las 13:59:43 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 129 segundos (aprox 2.2 min) para despistar al bot...
-
---- Iniciando iteración a las 14:01:52 ---
+--- Iniciando iteración a las 16:42:50 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3065,7 +716,7 @@ PS>TerminatingError(Invoke-WebRequest): "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
 Esperando 167 segundos (aprox 2.8 min) para despistar al bot...
 
---- Iniciando iteración a las 14:04:39 ---
+--- Iniciando iteración a las 16:45:38 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3150,270 +801,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 139 segundos (aprox 2.3 min) para despistar al bot...
+Esperando 133 segundos (aprox 2.2 min) para despistar al bot...
 
---- Iniciando iteración a las 14:06:59 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 121 segundos (aprox 2 min) para despistar al bot...
-
---- Iniciando iteración a las 14:09:00 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 165 segundos (aprox 2.8 min) para despistar al bot...
-
---- Iniciando iteración a las 14:11:45 ---
-PS>TerminatingError(Invoke-WebRequest): "
-
-
-    
-    
-    En mantenimiento - Abonoteatro
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 300px;
-            max-width: 85vw;
-            margin-bottom: 36px;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-            max-width: 480px;
-        }
-
-        .icono {
-            width: 96px;
-            height: 96px;
-            margin-bottom: 28px;
-            border-radius: 50%;
-            background-color: #eef2d9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icono svg {
-            width: 44px;
-            height: 44px;
-            color: #97A839;
-        }
-    
-
-
-    
-        
-            
-        
-    
-
-    Servicio en mantenimiento
-    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
-    Estamos preparando una nueva versión con importantes mejoras.
-    Volveremos en breve. Disculpe las molestias.
-
-"
-Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 124 segundos (aprox 2.1 min) para despistar al bot...
-
---- Iniciando iteración a las 14:13:50 ---
+--- Iniciando iteración a las 16:47:51 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3500,7 +890,7 @@ PS>TerminatingError(Invoke-WebRequest): "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
 Esperando 158 segundos (aprox 2.6 min) para despistar al bot...
 
---- Iniciando iteración a las 14:16:28 ---
+--- Iniciando iteración a las 16:50:29 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3585,9 +975,1749 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 170 segundos (aprox 2.8 min) para despistar al bot...
+Esperando 121 segundos (aprox 2 min) para despistar al bot...
 
---- Iniciando iteración a las 14:19:19 ---
+--- Iniciando iteración a las 16:52:31 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 179 segundos (aprox 3 min) para despistar al bot...
+
+--- Iniciando iteración a las 16:55:30 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 157 segundos (aprox 2.6 min) para despistar al bot...
+
+--- Iniciando iteración a las 16:58:08 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 165 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:00:53 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 175 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:03:49 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 132 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:06:01 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 141 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:08:23 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 129 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:10:32 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 141 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:12:53 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 131 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:15:05 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 129 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:17:14 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 123 segundos (aprox 2 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:19:18 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 174 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:22:12 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 137 segundos (aprox 2.3 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:24:30 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 180 segundos (aprox 3 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:27:30 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 169 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:30:20 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 144 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:32:44 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 174 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:35:39 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 133 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:37:52 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 176 segundos (aprox 2.9 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:40:49 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 145 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 17:43:14 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3674,7 +2804,7 @@ PS>TerminatingError(Invoke-WebRequest): "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
 Esperando 138 segundos (aprox 2.3 min) para despistar al bot...
 
---- Iniciando iteración a las 14:21:37 ---
+--- Iniciando iteración a las 17:45:32 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3759,9 +2889,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 143 segundos (aprox 2.4 min) para despistar al bot...
+Esperando 131 segundos (aprox 2.2 min) para despistar al bot...
 
---- Iniciando iteración a las 14:24:00 ---
+--- Iniciando iteración a las 17:47:44 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3846,9 +2976,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 170 segundos (aprox 2.8 min) para despistar al bot...
+Esperando 180 segundos (aprox 3 min) para despistar al bot...
 
---- Iniciando iteración a las 14:26:51 ---
+--- Iniciando iteración a las 17:50:44 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -3933,9 +3063,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 120 segundos (aprox 2 min) para despistar al bot...
+Esperando 173 segundos (aprox 2.9 min) para despistar al bot...
 
---- Iniciando iteración a las 14:28:53 ---
+--- Iniciando iteración a las 17:53:38 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -4020,9 +3150,9 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 138 segundos (aprox 2.3 min) para despistar al bot...
+Esperando 164 segundos (aprox 2.7 min) para despistar al bot...
 
---- Iniciando iteración a las 14:31:11 ---
+--- Iniciando iteración a las 17:56:22 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -4107,9 +3237,444 @@ PS>TerminatingError(Invoke-WebRequest): "
 
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
-Esperando 150 segundos (aprox 2.5 min) para despistar al bot...
+Esperando 134 segundos (aprox 2.2 min) para despistar al bot...
 
---- Iniciando iteración a las 14:33:41 ---
+--- Iniciando iteración a las 17:58:37 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 156 segundos (aprox 2.6 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:01:13 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 142 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:03:37 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 133 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:05:50 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 178 segundos (aprox 3 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:08:48 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 147 segundos (aprox 2.4 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:11:16 ---
 PS>TerminatingError(Invoke-WebRequest): "
 
 
@@ -4195,8 +3760,530 @@ PS>TerminatingError(Invoke-WebRequest): "
 "
 Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
 Esperando 127 segundos (aprox 2.1 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:13:23 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 155 segundos (aprox 2.6 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:15:59 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 152 segundos (aprox 2.5 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:18:31 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 135 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:20:47 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 133 segundos (aprox 2.2 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:23:00 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 169 segundos (aprox 2.8 min) para despistar al bot...
+
+--- Iniciando iteración a las 18:25:50 ---
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+    
+    En mantenimiento - Abonoteatro
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;
+            max-width: 85vw;
+            margin-bottom: 36px;
+        }
+
+        .logo svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 480px;
+        }
+
+        .icono {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 28px;
+            border-radius: 50%;
+            background-color: #eef2d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icono svg {
+            width: 44px;
+            height: 44px;
+            color: #97A839;
+        }
+    
+
+
+    
+        
+            
+        
+    
+
+    Servicio en mantenimiento
+    Nuestra web estará temporalmente fuera de servicio por tareas de actualización.
+    Estamos preparando una nueva versión con importantes mejoras.
+    Volveremos en breve. Disculpe las molestias.
+
+"
+Error en la iteración: Response status code does not indicate success: 503 (Service Temporarily Unavailable).
+Esperando 135 segundos (aprox 2.2 min) para despistar al bot...
 Han pasado las 2 horas. Finalizando ejecución correctamente.
 **********************
 PowerShell transcript end
-End time: 20260617143549
+End time: 20260617182805
 **********************
