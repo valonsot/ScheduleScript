@@ -38,12 +38,13 @@ if ([string]::IsNullOrWhiteSpace($loginUser) -or [string]::IsNullOrWhiteSpace($l
     exit 1
 }
 
-# 1. CARGAR SELENIUM (rutas locales del equipo)
-$nugetFolder = "C:\powershell\SeleniumFiles"
+# 1. CARGAR SELENIUM (Solo una vez)
+if (-not (Get-Module -ListAvailable Selenium)) {
+    Install-Module -Name Selenium -Force -Scope CurrentUser -AllowClobber
+}
+$module = Get-Module -ListAvailable Selenium | Select-Object -First 1
 $dllPath = Get-ChildItem -Path $module.ModuleBase -Filter "WebDriver.dll" -Recurse | Select-Object -First 1 -ExpandProperty FullName
 Add-Type -Path $dllPath
-#$dllPath = "$nugetFolder\lib\webdrivernetstandard2.0\WebDriver.dll"
-$driverPath = "$nugetFolder\manager\windows"
 
 if (-not (Test-Path $dllPath)) {
     Write-Host "ERROR: No se encuentra WebDriver.dll en '$dllPath'" -ForegroundColor Red
