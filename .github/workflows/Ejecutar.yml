@@ -1,53 +1,53 @@
-name: Check Abonoteatro cada 10 min
+name: Ejecutar Bot Abonoteatro
 
 on:
-  workflow_dispatch:
-  repository_dispatch:
-    types: [lanzar_script]
+   
+  schedule:
+    - cron: '*/15 * * * *'  # Se ejecuta cada 10 minutos
+  workflow_dispatch:       # Permite darle al botón "Run" a mano (alineado con schedule)
 
 concurrency:
-  group:  ${{ github.workflow }}
+  group: bot-abonoteatro
   cancel-in-progress: false 
-
-permissions:
-  contents: write
-
+   
 jobs:
   build:
     runs-on: windows-latest
+
+    permissions:
+      contents: write # PERMISO CRÍTICO para poder modificar el archivo CSV en el repo
+
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Ejecutar Scraper PowerShell
+      - name: Instalar Módulo Selenium
         shell: pwsh
         run: |
-          ./ScheduleScript.ps1
+          Install-Module -Name Selenium -Force -Scope CurrentUser
+
+      - name: Ejecutar Script de Tickets
+        shell: pwsh
         env:
-          ABONO_USER: ${{ secrets.ABONO_USER }}
-          ABONO_PASS: ${{ secrets.ABONO_PASS }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          URL_BASE: ${{ secrets.URL_BASE }}
-          URL_DETALLE: ${{ secrets.URL_DETALLE }}
-          URL_LOGIN: ${{ secrets.URL_LOGIN }}
-          URL_TEATRO: ${{ secrets.URL_TEATRO }}
-          URL_REFERER: ${{ secrets.URL_REFERER }}
+        run: |
+          ./abonoteatro_ultimo_github.ps1
 
-      - name: Guardar cambios en los ficheros (Persistencia)
+      - name: Guardar cambios en el repositorio
         shell: pwsh
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --global user.name 'GitHub Action Bot'
+          git config --global user.email 'action@github.com'
           
-          # 'git add -A' es clave: detecta archivos nuevos, modificados Y BORRADOS
-          git add -A
+          # Añadimos el archivo CSV que el script ha modificado
+          git add eventos_abonoteatro_proticketing.csv
           
-          # Comprobamos si hay cambios (tanto nuevos logs como borrados)
+          # Comprobamos si hay cambios reales para subir
           $status = git status --porcelain
           if ($status) {
-              Write-Host "Sincronizando logs con GitHub..."
-              git commit -m "Auto-cleanup y nuevo Log: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+              Write-Host "Guardando cambios en el repositorio..."
+              git commit -m "Auto-update: Actualizar eventos_abonoteatro_proticketing.csv"
               git push
           } else {
-              Write-Host "Sin cambios relevantes."
+              Write-Host "No hay cambios que guardar."
           }
