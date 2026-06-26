@@ -40,7 +40,9 @@ if ([string]::IsNullOrWhiteSpace($loginUser) -or [string]::IsNullOrWhiteSpace($l
 
 # 1. CARGAR SELENIUM (rutas locales del equipo)
 $nugetFolder = "C:\powershell\SeleniumFiles"
-$dllPath = "$nugetFolder\lib\webdrivernetstandard2.0\WebDriver.dll"
+$dllPath = Get-ChildItem -Path $module.ModuleBase -Filter "WebDriver.dll" -Recurse | Select-Object -First 1 -ExpandProperty FullName
+Add-Type -Path $dllPath
+#$dllPath = "$nugetFolder\lib\webdrivernetstandard2.0\WebDriver.dll"
 $driverPath = "$nugetFolder\manager\windows"
 
 if (-not (Test-Path $dllPath)) {
