@@ -441,24 +441,38 @@ Function Obtener-DetalleEvento {
 }
 
 function Subir-CambiosAlRepositorio {
-    param($archivo)
+    param($nombreArchivo)
+    
+    Write-Host "--- Iniciando sincronización con GitHub ---"
+    
+    # Verificamos si el archivo existe físicamente antes de hacer nada
+    if (!(Test-Path $nombreArchivo)) {
+        Write-Host "ERR: El archivo $nombreArchivo no existe en la carpeta local."
+        return
+    }
+
     try {
-        # Configuración de identidad básica para GitHub
+        Write-Host "Configurando usuario git..."
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
-        # Añadir el archivo al área de preparación
-        git add $archivo
+        Write-Host "Añadiendo $nombreArchivo al control de versiones..."
+        git add $nombreArchivo
 
-        # Solo hacemos el commit si el archivo ha cambiado de verdad
-        $cambios = git status --porcelain
-        if ($null -ne $cambios) {
-            git commit -m "Actualizar historial de eventos $(Get-Date -Format 'dd/MM/yyyy HH:mm')"
+        # Miramos si hay cambios pendientes de subir
+        $status = git status --porcelain
+        if ($status) {
+            Write-Host "Cambios detectados. Creando commit..."
+            git commit -m "Actualización automática: $(Get-Date -Format 'HH:mm')"
+            
+            Write-Host "Empujando cambios a GitHub (Push)..."
             git push
-            Write-Host "Historial sincronizado con el repositorio."
+            Write-Host "EXITO: Archivo subido correctamente."
+        } else {
+            Write-Host "AVISO: No hay cambios nuevos en el archivo, no hace falta subir nada."
         }
     } catch {
-        Write-Host "Error al subir a GitHub: $($_.Exception.Message)"
+        Write-Host "FALLO critico en Git: $($_.Exception.Message)"
     }
 }
 
