@@ -441,38 +441,32 @@ Function Obtener-DetalleEvento {
 }
 
 function Subir-CambiosAlRepositorio {
-    param($nombreArchivo)
+    param($archivo)
     
-    Write-Host "--- Iniciando sincronización con GitHub ---"
-    
-    # Verificamos si el archivo existe físicamente antes de hacer nada
-    if (!(Test-Path $nombreArchivo)) {
-        Write-Host "ERR: El archivo $nombreArchivo no existe en la carpeta local."
-        return
+    if ([string]::IsNullOrEmpty($archivo)) { 
+        Write-Host "AVISO: No se ha pasado ningun nombre de archivo para subir."
+        return 
     }
 
     try {
-        Write-Host "Configurando usuario git..."
+        # Extraemos solo el nombre del archivo (ej: nombres_eventos_old.csv) 
+        # por si le pasas una ruta completa como C:\temp\...
+        $soloNombre = Split-Path -Leaf $archivo
+        
+        Write-Host "Sincronizando $soloNombre con GitHub..."
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-
-        Write-Host "Añadiendo $nombreArchivo al control de versiones..."
-        git add $nombreArchivo
-
-        # Miramos si hay cambios pendientes de subir
-        $status = git status --porcelain
-        if ($status) {
-            Write-Host "Cambios detectados. Creando commit..."
-            git commit -m "Actualización automática: $(Get-Date -Format 'HH:mm')"
-            
-            Write-Host "Empujando cambios a GitHub (Push)..."
+        
+        git add $soloNombre
+        if (git status --porcelain) {
+            git commit -m "Auto-update: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
             git push
-            Write-Host "EXITO: Archivo subido correctamente."
+            Write-Host "OK: Cambios subidos."
         } else {
-            Write-Host "AVISO: No hay cambios nuevos en el archivo, no hace falta subir nada."
+            Write-Host "INFO: Sin cambios que subir."
         }
     } catch {
-        Write-Host "FALLO critico en Git: $($_.Exception.Message)"
+        Write-Host "Error en Git: $($_.Exception.Message)"
     }
 }
 
@@ -553,7 +547,7 @@ if ($null -ne $resultado) {
     $driverActivo.Quit()
     $driverActivo.Dispose()
 
-    Subir-CambiosAlRepositorio -archivo "nombres_eventos_old.csv"
+    Subir-CambiosAlRepositorio -archivo $PTH_EVT_OLD
 
 } else {
     Write-Host "No se pudo iniciar el proceso de Selenium." -ForegroundColor Red
