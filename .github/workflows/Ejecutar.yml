@@ -29,7 +29,9 @@ jobs:
       - name: Ejecutar Script de Tickets
         shell: pwsh
         env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+         ABONO_USER: ${{ secrets.ABONO_USER }}
+         ABONO_PASS: ${{ secrets.ABONO_PASS }}
+         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         run: |
           ./abonoteatro_ultimo_github.ps1
 
