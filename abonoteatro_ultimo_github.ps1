@@ -91,7 +91,7 @@ function Iniciar-Driver {
     # --headless desactivado temporalmente para PRUEBAS EN LOCAL:
     # así puedes ver el navegador abrirse y confirmar visualmente que el login funciona.
     # Cuando lo confirmemos, lo volvemos a activar.
-    # $options.AddArgument("--headless=new")
+    $options.AddArgument("--headless=new")
     $options.AddArgument("--no-sandbox")
     $options.AddArgument("--disable-dev-shm-usage")
     $options.AddArgument("--window-size=1920,1080")
@@ -334,7 +334,7 @@ function MiFuncionSelenium {
 
         # PASO 1: Pantalla de Login (aquí cierras las Cookies)
         $driver.Navigate().GoToUrl("https://www.abonoteatro.com/auth/login")
-        Cerrar-BannerCookies -driver $driver
+        Cerrar-BannerCookies -driver $driver | Out-Null
         
         $loginOk = Hacer-Login -driver $driver # Introduce user/pass y pulsa entrar
         if (-not $loginOk) { throw "Login fallido" }
@@ -457,7 +457,7 @@ Function Enviar-NotificacionTelegram {
         }
         
         # Envío directo sin rodeos
-        Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
+        # Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
     }
 }
 
