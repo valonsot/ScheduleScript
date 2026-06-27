@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [lanzar_script]
-  schedule:
+#  schedule:
 #    - cron: '*/10 * * * *'  # Intenta lanzarse cada 10 minutos
 
 concurrency:
