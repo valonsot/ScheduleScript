@@ -2,7 +2,7 @@ $loginUser = $env:ABONO_USER
 $loginPass = $env:ABONO_PASS
 
 $PTH_EVT  = "$PSScriptRoot/nombres_eventos.csv"
-$PTH_EVT_OLD = "$PSScriptRoot/nombres_eventos.csv_old.csv"
+$PTH_EVT_OLD = "$PSScriptRoot/nombres_eventos_old.csv"
 $PTH_USR  = "$PSScriptRoot/Data.txt"
 
 $CFG_TKN = $env:TELEGRAM_TOKEN
