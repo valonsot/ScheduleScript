@@ -258,69 +258,40 @@ function Obtener-CookieSesion {
 
 
 Function Listar-Eventos {
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]$htmlDeLaWeb
-    )
+    param($htmlDeLaWeb)
     
-    Write-Host "Iniciando extracción de datos desde el JSON interno..." -ForegroundColor Cyan
-
-    # 1. Limpieza de seguridad
+    # 1. Convertimos todo a un solo texto limpio
     $htmlString = ($htmlDeLaWeb -join "").Trim()
 
-    # 2. Extraemos el bloque JSON de la etiqueta __NEXT_DATA__
-    # Esta etiqueta contiene la "verdad" de la página sin errores de IDs de imagen.
-    $patternJson = '(?s)<script id="__NEXT_DATA__" type="application/json">(.*?)</script>'
-    if ($htmlString -match $patternJson) {
-        $jsonRaw = $Matches[1]
-        try {
-            $objetoData = $jsonRaw | ConvertFrom-Json
-        } catch {
-            Write-Host "Error al procesar el JSON interno." -ForegroundColor Red
-            return
-        }
-    } else {
-        Write-Host "No se encontró el bloque de datos __NEXT_DATA__." -ForegroundColor Red
-        return
-    }
+    # 2. Buscamos los bloques de eventos directamente en el texto
+    # Buscamos el ID, el Nombre y el Slug (que garantiza que es un evento y no una imagen)
+    # Este Regex es "elástico": no le importa el orden de los datos
+    $regex = '(?s)\{"id":"(?<id>[a-f0-9-]{36})".*?"name":"(?<nombre>[^"]+?)".*?"slug":"(?<slug>[^"]+?)"\}'
+    $coincidencias = [regex]::Matches($htmlString, $regex)
 
-    # 3. Buscamos todos los pares "id" y "name" en el texto del JSON.
-    # Usamos Regex sobre el JSON porque los eventos pueden estar repartidos en varias categorías.
-    # El patrón busca un ID de 36 caracteres seguido del nombre del evento.
-    $regexIdNombre = '"id":"(?<id>[a-f0-9-]{36})","name":"(?<nombre>[^"]+)"'
-    $coincidencias = [regex]::Matches($jsonRaw, $regexIdNombre)
-
-    $listaFinal = New-Object System.Collections.Generic.List[PSCustomObject]
-    $baseUrl = "https://www.abonoteatro.com/evento/"
-    
-    # Filtro para ignorar categorías y elementos de sistema
-    $blacklist = "Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Abonoteatro"
+    $lista = New-Object System.Collections.Generic.List[PSCustomObject]
 
     foreach ($m in $coincidencias) {
-        $nombre = $m.Groups['nombre'].Value
+        $n = $m.Groups['nombre'].Value
         $id = $m.Groups['id'].Value
 
-        # Solo guardamos si no es una categoría y el nombre tiene sentido
-        if ($nombre -notmatch "^($blacklist)$" -and $nombre.Length -gt 3) {
-            $listaFinal.Add([PSCustomObject]@{
-                NombreEvento = $nombre
-                UrlEvento    = "$baseUrl$id"
+        # Filtro rápido para no sacar menús ni categorías
+        $ignorar = "Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
+        
+        if ($n -notmatch $ignorar -and $n.Length -gt 3) {
+            $lista.Add([PSCustomObject]@{
+                NombreEvento = $n
+                UrlEvento    = "https://www.abonoteatro.com/evento/$id"
             })
         }
     }
 
-    # 4. Deduplicamos (muy importante) y guardamos
-    $eventosUnicos = $listaFinal | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
-
-    if ($eventosUnicos) {
-        $rutaCsv = $PTH_EVT
-        $eventosUnicos | Export-Csv -Path $rutaCsv -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-        
-        Write-Host "¡Conseguido! Se han extraído $($eventosUnicos.Count) eventos con sus URLs correctas." -ForegroundColor Green
-        Write-Host "Archivo guardado en: $rutaCsv" -ForegroundColor Cyan
-        
-        # Muestra de verificación
-        $eventosUnicos | Select-Object -First 5 | Format-Table -AutoSize
+    # 3. Quitar duplicados y guardar en el CSV
+    $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
+    
+    if ($final) {
+        $final | Export-Csv -Path "C:\temp\nombres_eventos.csv" -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        Write-Host "Extraídos $($final.Count) eventos con éxito."
     }
 }
 function Subir-CambiosAlRepositorio {
