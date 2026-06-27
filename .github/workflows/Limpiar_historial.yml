@@ -1,7 +1,7 @@
 name: Limpiar Ejecuciones Basura (Skipped, Cancelled y Pending)
 
 on:
-  schedule:
+ # schedule:
  #   - cron: '0 */2 * * *'
   workflow_dispatch:     
 
