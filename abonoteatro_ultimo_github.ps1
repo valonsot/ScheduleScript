@@ -369,41 +369,35 @@ function MiFuncionSelenium {
 
 function Cargar-TodosLosEventos {
     param($driver)
-    Write-Host "Iniciando carga completa de eventos (scroll y clics)..." -ForegroundColor Cyan
+    Write-Host "Bajando scroll para cargar todos los eventos..."
     $js = $driver -as [OpenQA.Selenium.IJavaScriptExecutor]
     
-    $maxIntentos = 20  # Límite de seguridad para no entrar en bucle infinito
-    $eventosContadosAnteriormente = 0
+    $eventosAnteriores = 0
+    $pausaEntreScrolls = 4 # Segundos para esperar a que carguen los nuevos datos
 
-    for ($i = 1; $i -le $maxIntentos; $i++) {
-        # 1. Hacer scroll hasta el fondo de la página
+    for ($i = 1; $i -le 30; $i++) { # Máximo 30 bajadas de scroll
+        # 1. Bajamos al final de la página
         $js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);")
-        Start-Sleep -Seconds 2 # Esperar a que el JS de la web reaccione
+        
+        # 2. Esperamos a que la web pida los datos y los pinte
+        Start-Sleep -Seconds $pausaEntreScrolls
 
-        # 2. Intentar encontrar y pulsar el botón "Cargar más" 
-        # (Basado en el span 'Cargar más' que vimos en tu HTML)
-        try {
-            $botonCargarMas = $driver.FindElement([OpenQA.Selenium.By]::XPath("//button[contains(., 'Cargar más')]"))
-            
-            if ($botonCargarMas.Displayed) {
-                Write-Host "Pulsando botón 'Cargar más' (vuelta $i)..." -ForegroundColor Yellow
-                $js.ExecuteScript("arguments[0].click();", $botonCargarMas)
-                Start-Sleep -Seconds 3 # Tiempo para que carguen los nuevos cuadros
-            }
-        } catch {
-            # Si entra aquí es que no encontró el botón "Cargar más"
-            # Hacemos una última comprobación de si el scroll infinito ha traído algo nuevo
-            $htmlActual = $driver.PageSource
-            $conteoActual = ([regex]::Matches($htmlActual, "flex flex-col justify-center")).Count
-            
-            if ($conteoActual -eq $eventosContadosAnteriormente) {
-                Write-Host "Ya no hay más eventos que cargar. Total: $conteoActual" -ForegroundColor Green
-                break
-            }
-            $eventosContadosAnteriormente = $conteoActual
+        # 3. Contamos cuántos eventos hay ahora en el HTML
+        $html = $driver.PageSource
+        $eventosActuales = ([regex]::Matches($html, "flex flex-col justify-center")).Count
+
+        Write-Host "Vuelta $i Eventos detectados: $eventosActuales"
+
+        # 4. Si el número de eventos no ha crecido, es que hemos llegado al final real
+        if ($eventosActuales -le $eventosAnteriores) {
+            Write-Host "Final del catálogo alcanzado."
+            break
         }
+
+        $eventosAnteriores = $eventosActuales
     }
 }
+
 
 Function Comparar-Eventos {
     $rutaNuevo = $PTH_EVT
