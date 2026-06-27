@@ -440,6 +440,28 @@ Function Obtener-DetalleEvento {
     }
 }
 
+function Subir-CambiosAlRepositorio {
+    param($archivo)
+    try {
+        # Configuración de identidad básica para GitHub
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        # Añadir el archivo al área de preparación
+        git add $archivo
+
+        # Solo hacemos el commit si el archivo ha cambiado de verdad
+        $cambios = git status --porcelain
+        if ($null -ne $cambios) {
+            git commit -m "Actualizar historial de eventos $(Get-Date -Format 'dd/MM/yyyy HH:mm')"
+            git push
+            Write-Host "Historial sincronizado con el repositorio."
+        }
+    } catch {
+        Write-Host "Error al subir a GitHub: $($_.Exception.Message)"
+    }
+}
+
 Function Enviar-NotificacionTelegram {
     param($Mensaje)
 
@@ -516,6 +538,8 @@ if ($null -ne $resultado) {
     Write-Host "Finalizado. Cerrando navegador..." -ForegroundColor Yellow
     $driverActivo.Quit()
     $driverActivo.Dispose()
+
+    Subir-CambiosAlRepositorio -archivo "nombres_eventos_old.csv"
 
 } else {
     Write-Host "No se pudo iniciar el proceso de Selenium." -ForegroundColor Red
