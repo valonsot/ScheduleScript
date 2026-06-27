@@ -290,7 +290,7 @@ Function Listar-Eventos {
     $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
     
     if ($final) {
-        $final | Export-Csv -Path "C:\temp\nombres_eventos.csv" -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        $final | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
         Write-Host "Extraídos $($final.Count) eventos con éxito."
     }
 }
