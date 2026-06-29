@@ -258,40 +258,44 @@ function Obtener-CookieSesion {
 
 
 Function Listar-Eventos {
-    param($driver) # <--- Recibe el driver activo
-
-    Write-Host "Consultando base de datos interna de la web vía Selenium..." -ForegroundColor Cyan
-
-    # 1. Extraemos los ítems del objeto __NEXT_DATA__ directamente del navegador
-    $jsScript = "return JSON.stringify(window.__NEXT_DATA__.props.pageProps.events.items)"
+    param($htmlDeLaWeb)
     
-    try {
-        $jsonRaw = $driver.ExecuteScript($jsScript)
-        
-        # Si la primera ruta falla, intentamos la alternativa
-        if ($null -eq $jsonRaw) {
-            $jsonRaw = $driver.ExecuteScript("return JSON.stringify(window.__NEXT_DATA__.props.pageProps.initialData.events.items)")
-        }
+    # 1. Limpiamos el texto
+    $htmlString = ($htmlDeLaWeb -join "").Trim()
 
-        $eventos = $jsonRaw | ConvertFrom-Json
-        $listaFinal = New-Object System.Collections.Generic.List[PSCustomObject]
+    # 2. REGEX CORREGIDO: 
+    # Buscamos ID y Nombre dentro de un objeto que tenga "slug" (eso garantiza que es un evento).
+    # Usamos [^}]+? para buscar dentro del mismo bloque sin pasarnos al siguiente.
+    $regex = '"id":"(?<id>[a-f0-9-]{36})"[^}]+?"name":"(?<nombre>[^"]+?)"[^}]+?"slug":"'
+    $coincidencias = [regex]::Matches($htmlString, $regex)
 
-        foreach ($e in $eventos) {
-            # Aquí construimos la URL con el ID REAL (019ed40e...)
-            $listaFinal.Add([PSCustomObject]@{
-                NombreEvento = $e.name
-                UrlEvento    = "https://www.abonoteatro.com/evento/$($e.id)"
-                Recinto      = $e.enclosure.name
+    $lista = New-Object System.Collections.Generic.List[PSCustomObject]
+
+    foreach ($m in $coincidencias) {
+        $n = $m.Groups['nombre'].Value
+        $id = $m.Groups['id'].Value
+
+        # Limpiamos códigos Unicode raros que mete la web (como \u00a1 para el signo ¡)
+        $n = [System.Text.RegularExpressions.Regex]::Unescape($n)
+
+        # Filtro de categorías
+        $ignorar = "Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
+        if ($n -notmatch "^($ignorar)$") {
+            $lista.Add([PSCustomObject]@{
+                NombreEvento = $n
+                UrlEvento    = "https://www.abonoteatro.com/evento/$id"
             })
         }
+    }
 
-        # 2. Guardamos en el CSV
-        if ($listaFinal.Count -gt 0) {
-            $listaFinal | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-            Write-Host "¡Éxito! Se han guardado $($listaFinal.Count) eventos con IDs reales." -ForegroundColor Green
-        }
-    } catch {
-        Write-Host "Error al extraer datos: $($_.Exception.Message)" -ForegroundColor Red
+    # 3. Deduplicar y guardar usando tu variable $PTH_EVT
+    $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
+    
+    if ($final) {
+        $final | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        Write-Host "Carga finalizada: $($final.Count) eventos procesados."
+    } else {
+        Write-Host "Error: No se han encontrado eventos con el Regex." -ForegroundColor Red
     }
 }
 
