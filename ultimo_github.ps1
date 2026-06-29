@@ -470,6 +470,51 @@ function Subir-CambiosAlRepositorio {
         Write-Host "Error en Git: $($_.Exception.Message)"
     }
 }
+Function Obtener-Urls-Nuevas {
+    param($driver, $listaNuevos)
+
+    $eventosConLinkReal = New-Object System.Collections.Generic.List[PSCustomObject]
+
+    foreach ($evento in $listaNuevos) {
+        $nombre = $evento.NombreEvento
+        Write-Host "Haciendo click en: $nombre" -ForegroundColor Cyan
+
+        try {
+            # 1. SELECTOR IGUAL AL TUYO:
+            # Cambiamos 'button' por '*' para que busque el texto en cualquier etiqueta (div, span, etc.)
+            # Usamos normalize-space() por si hay espacios o saltos de línea invisibles
+            $selector = "//*[contains(normalize-space(text()), '$nombre')]"
+            
+            $target = $driver.FindElement([OpenQA.Selenium.By]::XPath($selector))
+
+            # 2. SCROLL Y CLICK (Igual que un humano)
+            $driver.ExecuteScript("arguments[0].scrollIntoView({block: 'center'});", $target)
+            Start-Sleep -Milliseconds 500
+            $target.Click()
+
+            # 3. ESPERAR Y CAPTURAR
+            Start-Sleep -Seconds 2 # Esperamos a que cargue la ficha
+            $urlReal = $driver.Url
+            Write-Host "   URL Real: $urlReal" -ForegroundColor Green
+
+            # 4. GUARDAR DATOS
+            $eventosConLinkReal.Add([PSCustomObject]@{
+                NombreEvento = $nombre
+                UrlEvento    = $urlReal
+                Recinto      = $evento.Recinto
+            })
+
+            # 5. VOLVER ATRÁS
+            $driver.Navigate().Back()
+            Start-Sleep -Seconds 2 # Esperamos a que recargue la lista principal
+
+        } catch {
+            Write-Host "   [!] No se pudo clicar en '$nombre'. Es posible que el nombre tenga carácteres especiales." -ForegroundColor Yellow
+            $eventosConLinkReal.Add($evento) # Mantenemos el original si falla
+        }
+    }
+    return $eventosConLinkReal
+}
 
 Function Enviar-NotificacionTelegram {
     param($Mensaje)
@@ -504,21 +549,34 @@ if ($null -ne $resultado) {
 
     # 3. Comparamos para ver qué hay de nuevo
     $listaParaTelegram = Comparar-Eventos
-    if ($null -ne $listaParaTelegram) {
+
+    #Vamos evento a evento para sacar la url correcta.
+    if ($listaParaTelegram.Count -gt 0) {
+    
+        # 3. LLAMADA A LA NUEVA FUNCIÓN
+        # Solo entramos en los eventos que realmente vamos a enviar a Telegram
+       $listaFinal = Obtener-Urls-Nuevas -driver $driverActivo -listaNuevos $listaParaTelegram
+
+        # 4. Ahora sí, envías a Telegram con la URL corregida
+        # Enviar-Telegram -lista $eventosListosParaEnviar
+    }
+
+    if ($null -ne $listaFinal) {
         Write-Host "[+] Iniciando envío de alertas por Telegram..." -ForegroundColor Cyan
     
-        foreach ($evento in $listaParaTelegram) {
+        foreach ($evento in $listaFinal) {
             # Construimos un mensaje atractivo con el enlace real que ya extrajimos
             $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
             $msg += "📌 <b>$($evento.NombreEvento)</b>`n`n"
             $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
         # Llamamos a la función de envío
-            Enviar-NotificacionTelegram -Mensaje $msg
+            #Enviar-NotificacionTelegram -Mensaje $msg
         
             # Pausa de seguridad para no saturar el API de Telegram (antispam)
             Start-Sleep -Milliseconds 500
     }
+    
     
     Write-Host "[+] Alertas enviadas correctamente." -ForegroundColor Green
     } else {
