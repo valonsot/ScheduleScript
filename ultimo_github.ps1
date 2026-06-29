@@ -488,11 +488,11 @@ function Subir-CambiosAlRepositorio {
         Write-Host "Error en Git: $($_.Exception.Message)"
     }
 }
-Function Obtener-Urls-Nuevas {
+Function Obtener-Urls-Nuevas-old {
     param($driver, $listaNuevos)
 
     $eventosConLinkReal = New-Object System.Collections.Generic.List[PSCustomObject]
-
+    $ventanaPrincipal = $driver.CurrentWindowHandle
     foreach ($evento in $listaNuevos) {
         $nombre = $evento.NombreEvento
         Write-Host "Haciendo click en: $nombre" -ForegroundColor Cyan
@@ -533,6 +533,59 @@ Function Obtener-Urls-Nuevas {
     }
     return $eventosConLinkReal
 }
+
+Function Obtener-Urls-Nuevas {
+    param($driver, $listaNuevos)
+
+    $eventosConLinkReal = New-Object System.Collections.Generic.List[PSCustomObject]
+    
+    # Guardamos el identificador de la ventana principal (la del scroll)
+    $ventanaPrincipal = $driver.CurrentWindowHandle
+    $js = $driver -as [OpenQA.Selenium.IJavaScriptExecutor]
+
+    foreach ($evento in $listaNuevos) {
+        $nombre = $evento.NombreEvento
+        $urlDeLaLista = $evento.UrlEvento  # La URL que sacamos con el ID en la primera función
+        
+        Write-Host "Procesando: $nombre" -ForegroundColor Cyan
+
+        try {
+            # 1. EN LUGAR DE CLICAR: Abrimos la URL en una pestaña nueva usando JavaScript
+            # Esto evita el error de caracteres especiales del XPath y no pierde el scroll
+            $js.ExecuteScript("window.open('$urlDeLaLista', '_blank');")
+
+            # 2. CAMBIAR EL FOCO A LA NUEVA PESTAÑA
+            Start-Sleep -Milliseconds 500
+            $todasLasVentanas = $driver.WindowHandles
+            $driver.SwitchTo().Window($todasLasVentanas[-1])
+
+            # 3. ESPERAR Y CAPTURAR LA URL REAL
+            Start-Sleep -Seconds 2 # Esperamos a que cargue la ficha en la nueva pestaña
+            $urlReal = $driver.Url
+            Write-Host "   URL Real confirmada: $urlReal" -ForegroundColor Green
+
+            # 4. GUARDAR DATOS
+            $eventosConLinkReal.Add([PSCustomObject]@{
+                NombreEvento = $nombre
+                UrlEvento    = $urlReal
+                Recinto      = $evento.Recinto
+            })
+
+            # 5. CERRAR PESTAÑA Y VOLVER A LA PRINCIPAL
+            # Así la página principal sigue exactamente donde estaba (con todo el scroll)
+            $driver.Close()
+            $driver.SwitchTo().Window($ventanaPrincipal)
+
+        } catch {
+            Write-Host "   [!] Error al procesar '$nombre'. Volviendo a la lista principal..." -ForegroundColor Yellow
+            # Si algo falla, intentamos volver a la principal para no detener el bucle
+            $driver.SwitchTo().Window($ventanaPrincipal)
+            $eventosConLinkReal.Add($evento) 
+        }
+    }
+    return $eventosConLinkReal
+}
+
 
 Function Enviar-NotificacionTelegram {
     param($Mensaje)
