@@ -571,7 +571,7 @@ if ($null -ne $resultado) {
             $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
         # Llamamos a la función de envío
-            Enviar-NotificacionTelegram -Mensaje $msg
+            #Enviar-NotificacionTelegram -Mensaje $msg
         
             # Pausa de seguridad para no saturar el API de Telegram (antispam)
             Start-Sleep -Milliseconds 500
@@ -584,7 +584,7 @@ if ($null -ne $resultado) {
     }
 
     # 4. Bucle para entrar en cada evento nuevo SIN CERRAR el navegador
-    if ($null -ne $listaParaTelegram) {
+    <#if ($null -ne $listaParaTelegram) {
         foreach ($evento in $listaParaTelegram) {
             Write-Host "--- Procesando: $($evento.NombreEvento) ---" -ForegroundColor Magenta
             
@@ -599,7 +599,7 @@ if ($null -ne $resultado) {
         }
     } else {
         Write-Host "No hay eventos nuevos para procesar." -ForegroundColor Yellow
-    }
+    }#>
 
     # 5. AHORA SÍ: Cerramos el navegador al final de todo el proceso
     Write-Host "Finalizado. Cerrando navegador..." -ForegroundColor Yellow
