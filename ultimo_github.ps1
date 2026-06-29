@@ -260,15 +260,24 @@ function Obtener-CookieSesion {
 Function Listar-Eventos {
     param($htmlDeLaWeb)
     
-    # 1. Unificamos el HTML en una sola línea para facilitar la búsqueda
+    if (-not $htmlDeLaWeb) {
+        Write-Host "Error: El HTML recibido está vacío." -ForegroundColor Red
+        return
+    }
+
+    # 1. Unificamos el HTML
     $htmlString = ($htmlDeLaWeb -join "")
 
-    # 2. NUEVO REGEX: 
-    # En este HTML, el nombre está en el atributo 'alt' de la imagen 
-    # y el ID del evento está dentro de la URL de la imagen (tras 'files%252F')
-    $regex = 'alt="(?<nombre>[^"]+?)".+?files%252F(?<id>[a-f0-9-]{36})%252Fraw'
+    # 2. REGEX MEJORADO:
+    # - (?i) hace que no distinga entre mayúsculas y minúsculas
+    # - Se flexibiliza el separador de la URL (acepta %252F, %2F o /)
+    # - Se flexibiliza la longitud del ID
+    $regex = '(?i)alt="(?<nombre>[^"]+?)".*?files(?:%252F|%2F|/)(?<id>[a-f0-9-]+?)(?:%252F|%2F|/|raw)'
     
     $coincidencias = [regex]::Matches($htmlString, $regex)
+
+    # --- DEBUG: Línea para saber si el regex está encontrando algo ---
+    Write-Host "DEBUG: Se han encontrado $($coincidencias.Count) coincidencias brutas con el Regex." -ForegroundColor Cyan
 
     $lista = New-Object System.Collections.Generic.List[PSCustomObject]
 
@@ -276,7 +285,7 @@ Function Listar-Eventos {
         $n = $m.Groups['nombre'].Value.Trim()
         $id = $m.Groups['id'].Value
 
-        # Filtro para ignorar nombres genéricos o categorías que usa la web en sus iconos
+        # Filtro de categorías
         $ignorar = "image|Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
         
         if ($n -notmatch "^($ignorar)$" -and $n -ne "") {
@@ -287,15 +296,20 @@ Function Listar-Eventos {
         }
     }
 
-    # 3. Deduplicar (por si un evento aparece en 'Destacados' y en su categoría a la vez)
+    # 3. Deduplicar
     $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
     
     if ($final) {
-        # Guardar en el CSV (usando tu variable $PTH_EVT)
-        $final | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-        Write-Host "Carga finalizada: $($final.Count) eventos únicos encontrados." -ForegroundColor Green
+        # Asegúrate de que $PTH_EVT esté definida globalmente o pásala como parámetro
+        $final | Export-Csv -Path $script:PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        Write-Host "Carga finalizada: $($final.Count) eventos únicos guardados en $script:PTH_EVT" -ForegroundColor Green
     } else {
-        Write-Host "Error: No se han podido extraer eventos. Comprueba que el HTML contiene las etiquetas alt= y los IDs." -ForegroundColor Red
+        Write-Host "Error: No se han podido extraer eventos." -ForegroundColor Red
+        Write-Host "Posible motivo: El formato del HTML ha cambiado o los nombres coinciden con la lista de 'ignorar'." -ForegroundColor Yellow
+        
+        # Tip de ayuda: mostrar un trozo del HTML para inspeccionar
+        Write-Host "Muestra del HTML recibido (primeros 200 caracteres):"
+        Write-Host ($htmlString.Substring(0, [Math]::Min(200, $htmlString.Length))) -ForegroundColor Gray
     }
 }
 
