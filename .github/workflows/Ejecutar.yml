@@ -32,6 +32,7 @@ jobs:
          ABONO_USER: ${{ secrets.ABONO_USER }}
          ABONO_PASS: ${{ secrets.ABONO_PASS }}
          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+         URL_LOGIN: ${{ secrets.URL_LOGIN }}
         run: |
           ./ultimo_github.ps1
 
