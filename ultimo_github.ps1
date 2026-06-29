@@ -31,7 +31,7 @@ $ultimaHora = "Nunca (Primera ejecución)"
 $nombreCsv = $PTH_EVT
 $csvPath = Join-Path $directorioScript $nombreCsv
 
-$urlLogin = "https://www.abonoteatro.com/auth/login"
+$urlLogin = $env:URL_LOGIN
 
 if ([string]::IsNullOrWhiteSpace($loginUser) -or [string]::IsNullOrWhiteSpace($loginPass)) {
     Write-Host "ERROR: Debes definir las variables de entorno ABONO_USER y ABONO_PASS" -ForegroundColor Red
