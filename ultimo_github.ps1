@@ -258,44 +258,48 @@ function Obtener-CookieSesion {
 
 
 Function Listar-Eventos {
-    param($htmlDeLaWeb)
+    param($driver) # Ahora recibe el objeto del navegador, no el texto
+
+    Write-Host "Extrayendo datos reales desde el motor de la web..." -ForegroundColor Cyan
+
+    # 1. Extraemos el objeto de datos interno de Next.js (donde están los IDs reales)
+    $jsScript = "return JSON.stringify(window.__NEXT_DATA__.props.pageProps)"
+    $jsonDataRaw = $driver.ExecuteScript($jsScript)
     
-    # 1. Unificamos el HTML en una sola línea para facilitar la búsqueda
-    $htmlString = ($htmlDeLaWeb -join "")
-
-    # 2. NUEVO REGEX: 
-    # En este HTML, el nombre está en el atributo 'alt' de la imagen 
-    # y el ID del evento está dentro de la URL de la imagen (tras 'files%252F')
-    $regex = 'alt="(?<nombre>[^"]+?)".+?files%252F(?<id>[a-f0-9-]{36})%252Fraw'
-    
-    $coincidencias = [regex]::Matches($htmlString, $regex)
-
-    $lista = New-Object System.Collections.Generic.List[PSCustomObject]
-
-    foreach ($m in $coincidencias) {
-        $n = $m.Groups['nombre'].Value.Trim()
-        $id = $m.Groups['id'].Value
-
-        # Filtro para ignorar nombres genéricos o categorías que usa la web en sus iconos
-        $ignorar = "image|Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
-        
-        if ($n -notmatch "^($ignorar)$" -and $n -ne "") {
-            $lista.Add([PSCustomObject]@{
-                NombreEvento = $n
-                UrlEvento    = "https://www.abonoteatro.com/evento/$id"
-            })
-        }
+    if (-not $jsonDataRaw) {
+        Write-Host "Error: No se pudo obtener la base de datos interna de la página." -ForegroundColor Red
+        return
     }
 
-    # 3. Deduplicar (por si un evento aparece en 'Destacados' y en su categoría a la vez)
-    $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
-    
-    if ($final) {
-        # Guardar en el CSV (usando tu variable $PTH_EVT)
-        $final | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-        Write-Host "Carga finalizada: $($final.Count) eventos únicos encontrados." -ForegroundColor Green
-    } else {
-        Write-Host "Error: No se han podido extraer eventos. Comprueba que el HTML contiene las etiquetas alt= y los IDs." -ForegroundColor Red
+    # 2. Convertimos el JSON a objeto de PowerShell
+    $obj = $jsonDataRaw | ConvertFrom-Json
+
+    # 3. Buscamos dónde están los eventos (en esta web suelen estar en 'initialData' o 'events')
+    # Según el HTML que pasaste, están en la propiedad 'events'
+    $eventos = $obj.events.items 
+
+    if (-not $eventos) {
+        Write-Host "La estructura ha cambiado o no hay eventos en esta página." -ForegroundColor Yellow
+        return
+    }
+
+    $listaFinal = New-Object System.Collections.Generic.List[PSCustomObject]
+
+    foreach ($e in $eventos) {
+        # Creamos el objeto con el ID real que NO da error 404
+        $listaFinal.Add([PSCustomObject]@{
+            NombreEvento = $e.name
+            UrlEvento    = "https://www.abonoteatro.com/evento/$($e.id)"
+            Recinto      = $e.enclosure.name
+            Categoria    = $e.category.name
+            Precio      = "$($e.price) €"
+        })
+    }
+
+    # 4. Guardar en el CSV (usando tu variable global $PTH_EVT)
+    if ($listaFinal.Count -gt 0) {
+        $listaFinal | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        Write-Host "¡Carga finalizada! Se han guardado $($listaFinal.Count) eventos con enlaces correctos." -ForegroundColor Green
     }
 }
 
@@ -492,7 +496,7 @@ Function Enviar-NotificacionTelegram {
         }
         
         # Envío directo sin rodeos
-        Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
+        #Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
     }
 }
 
@@ -504,7 +508,7 @@ if ($null -ne $resultado) {
     $driverActivo = $resultado.Driver
 
     # 2. Sacamos la lista de eventos con sus URLs (C:\temp\nombres_eventos.csv)
-    Listar-Eventos -htmlDeLaWeb ($htmlCatalogo -join "")
+    Listar-Eventos -driver $driver
 
     # 3. Comparamos para ver qué hay de nuevo
     $listaParaTelegram = Comparar-Eventos
