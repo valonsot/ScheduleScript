@@ -260,27 +260,26 @@ function Obtener-CookieSesion {
 Function Listar-Eventos {
     param($htmlDeLaWeb)
     
-    # 1. Limpiamos el texto
-    $htmlString = ($htmlDeLaWeb -join "").Trim()
+    # 1. Unificamos el HTML en una sola línea para facilitar la búsqueda
+    $htmlString = ($htmlDeLaWeb -join "")
 
-    # 2. REGEX CORREGIDO: 
-    # Buscamos ID y Nombre dentro de un objeto que tenga "slug" (eso garantiza que es un evento).
-    # Usamos [^}]+? para buscar dentro del mismo bloque sin pasarnos al siguiente.
-    $regex = '"id":"(?<id>[a-f0-9-]{36})"[^}]+?"name":"(?<nombre>[^"]+?)"[^}]+?"slug":"'
+    # 2. NUEVO REGEX: 
+    # En este HTML, el nombre está en el atributo 'alt' de la imagen 
+    # y el ID del evento está dentro de la URL de la imagen (tras 'files%252F')
+    $regex = 'alt="(?<nombre>[^"]+?)".+?files%252F(?<id>[a-f0-9-]{36})%252Fraw'
+    
     $coincidencias = [regex]::Matches($htmlString, $regex)
 
     $lista = New-Object System.Collections.Generic.List[PSCustomObject]
 
     foreach ($m in $coincidencias) {
-        $n = $m.Groups['nombre'].Value
+        $n = $m.Groups['nombre'].Value.Trim()
         $id = $m.Groups['id'].Value
 
-        # Limpiamos códigos Unicode raros que mete la web (como \u00a1 para el signo ¡)
-        $n = [System.Text.RegularExpressions.Regex]::Unescape($n)
-
-        # Filtro de categorías
-        $ignorar = "Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
-        if ($n -notmatch "^($ignorar)$") {
+        # Filtro para ignorar nombres genéricos o categorías que usa la web en sus iconos
+        $ignorar = "image|Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
+        
+        if ($n -notmatch "^($ignorar)$" -and $n -ne "") {
             $lista.Add([PSCustomObject]@{
                 NombreEvento = $n
                 UrlEvento    = "https://www.abonoteatro.com/evento/$id"
@@ -288,14 +287,15 @@ Function Listar-Eventos {
         }
     }
 
-    # 3. Deduplicar y guardar usando tu variable $PTH_EVT
+    # 3. Deduplicar (por si un evento aparece en 'Destacados' y en su categoría a la vez)
     $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
     
     if ($final) {
+        # Guardar en el CSV (usando tu variable $PTH_EVT)
         $final | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-        Write-Host "Carga finalizada: $($final.Count) eventos procesados."
+        Write-Host "Carga finalizada: $($final.Count) eventos únicos encontrados." -ForegroundColor Green
     } else {
-        Write-Host "Error: No se han encontrado eventos con el Regex." -ForegroundColor Red
+        Write-Host "Error: No se han podido extraer eventos. Comprueba que el HTML contiene las etiquetas alt= y los IDs." -ForegroundColor Red
     }
 }
 
