@@ -502,7 +502,7 @@ Function Obtener-Urls-Nuevas {
             # Cambiamos 'button' por '*' para que busque el texto en cualquier etiqueta (div, span, etc.)
             # Usamos normalize-space() por si hay espacios o saltos de línea invisibles
             $selector = "//*[contains(normalize-space(text()), '$nombre')]"
-            
+            write-host $nombre
             $target = $driver.FindElement([OpenQA.Selenium.By]::XPath($selector))
 
             # 2. SCROLL Y CLICK (Igual que un humano)
