@@ -260,25 +260,26 @@ function Obtener-CookieSesion {
 Function Listar-Eventos {
     param($htmlDeLaWeb)
     
-    # 1. Convertimos todo a un solo texto limpio
-    $htmlString = ($htmlDeLaWeb -join "").Trim()
+    # 1. Unificamos el HTML en una sola línea para facilitar la búsqueda
+    $htmlString = ($htmlDeLaWeb -join "")
 
-    # 2. Buscamos los bloques de eventos directamente en el texto
-    # Buscamos el ID, el Nombre y el Slug (que garantiza que es un evento y no una imagen)
-    # Este Regex es "elástico": no le importa el orden de los datos
-    $regex = '(?s)\{"id":"(?<id>[a-f0-9-]{36})".*?"name":"(?<nombre>[^"]+?)".*?"slug":"(?<slug>[^"]+?)"\}'
+    # 2. NUEVO REGEX: 
+    # En este HTML, el nombre está en el atributo 'alt' de la imagen 
+    # y el ID del evento está dentro de la URL de la imagen (tras 'files%252F')
+    $regex = 'alt="(?<nombre>[^"]+?)".+?files%252F(?<id>[a-f0-9-]{36})%252Fraw'
+    
     $coincidencias = [regex]::Matches($htmlString, $regex)
 
     $lista = New-Object System.Collections.Generic.List[PSCustomObject]
 
     foreach ($m in $coincidencias) {
-        $n = $m.Groups['nombre'].Value
+        $n = $m.Groups['nombre'].Value.Trim()
         $id = $m.Groups['id'].Value
 
-        # Filtro rápido para no sacar menús ni categorías
-        $ignorar = "Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
+        # Filtro para ignorar nombres genéricos o categorías que usa la web en sus iconos
+        $ignorar = "image|Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
         
-        if ($n -notmatch $ignorar -and $n.Length -gt 3) {
+        if ($n -notmatch "^($ignorar)$" -and $n -ne "") {
             $lista.Add([PSCustomObject]@{
                 NombreEvento = $n
                 UrlEvento    = "https://www.abonoteatro.com/evento/$id"
@@ -286,14 +287,18 @@ Function Listar-Eventos {
         }
     }
 
-    # 3. Quitar duplicados y guardar en el CSV
+    # 3. Deduplicar (por si un evento aparece en 'Destacados' y en su categoría a la vez)
     $final = $lista | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
     
     if ($final) {
+        # Guardar en el CSV (usando tu variable $PTH_EVT)
         $final | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-        Write-Host "Extraídos $($final.Count) eventos con éxito."
+        Write-Host "Carga finalizada: $($final.Count) eventos únicos encontrados." -ForegroundColor Green
+    } else {
+        Write-Host "Error: No se han podido extraer eventos. Comprueba que el HTML contiene las etiquetas alt= y los IDs." -ForegroundColor Red
     }
 }
+
 function Subir-CambiosAlRepositorio {
     # NOTA: función pausada mientras probamos en local. Se reactivará cuando
     # volvamos a desplegar en GitHub Actions (necesita GITHUB_TOKEN configurado).
