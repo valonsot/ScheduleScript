@@ -33,7 +33,7 @@ jobs:
          ABONO_PASS: ${{ secrets.ABONO_PASS }}
          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         run: |
-          ./abonoteatro_ultimo_github.ps1
+          ./ultimo_github.ps1
 
       - name: Guardar cambios en el repositorio
         shell: pwsh
