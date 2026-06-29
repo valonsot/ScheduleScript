@@ -492,7 +492,7 @@ Function Enviar-NotificacionTelegram {
         }
         
         # Envío directo sin rodeos
-        # Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
+        Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
     }
 }
 
