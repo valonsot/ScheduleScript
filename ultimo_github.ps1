@@ -563,7 +563,7 @@ if ($null -ne $resultado) {
     $driverActivo = $resultado.Driver
 
     # 2. Sacamos la lista de eventos con sus URLs (C:\temp\nombres_eventos.csv)
-     Listar-Eventos -driver $driverActivo
+     Listar-Eventos -htmlDeLaWeb $htmlCatalogo
 
     # 3. Comparamos para ver qué hay de nuevo
     $listaParaTelegram = Comparar-Eventos
