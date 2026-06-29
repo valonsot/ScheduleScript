@@ -258,48 +258,61 @@ function Obtener-CookieSesion {
 
 
 Function Listar-Eventos {
-    param($driver) # Ahora recibe el objeto del navegador, no el texto
-
-    Write-Host "Extrayendo datos reales desde el motor de la web..." -ForegroundColor Cyan
-
-    # 1. Extraemos el objeto de datos interno de Next.js (donde están los IDs reales)
-    $jsScript = "return JSON.stringify(window.__NEXT_DATA__.props.pageProps)"
-    $jsonDataRaw = $driver.ExecuteScript($jsScript)
+    param($htmlDeLaWeb)
     
-    if (-not $jsonDataRaw) {
-        Write-Host "Error: No se pudo obtener la base de datos interna de la página." -ForegroundColor Red
+    Write-Host "Extrayendo IDs reales del bloque de datos interno..." -ForegroundColor Cyan
+
+    # 1. Unificamos el HTML en una sola cadena
+    $htmlString = ($htmlDeLaWeb -join "")
+
+    # 2. REGEX para extraer el JSON oculto en la etiqueta __NEXT_DATA__
+    # Esta etiqueta contiene la base de datos real que usa la web para navegar
+    $regexJson = '(?s)<script id="__NEXT_DATA__" type="application/json">(.*?)</script>'
+    $match = [regex]::Match($htmlString, $regexJson)
+
+    if (-not $match.Success) {
+        Write-Host "Error: No se encontró el bloque de datos __NEXT_DATA__ en el HTML." -ForegroundColor Red
         return
     }
 
-    # 2. Convertimos el JSON a objeto de PowerShell
-    $obj = $jsonDataRaw | ConvertFrom-Json
+    # 3. Limpiamos y convertimos el JSON a objeto de PowerShell
+    $jsonTexto = $match.Groups[1].Value
+    $objPrincipal = $jsonTexto | ConvertFrom-Json
 
-    # 3. Buscamos dónde están los eventos (en esta web suelen estar en 'initialData' o 'events')
-    # Según el HTML que pasaste, están en la propiedad 'events'
-    $eventos = $obj.events.items 
+    # 4. Navegamos por la estructura del JSON para encontrar los eventos
+    # En la página de programación la ruta es: props -> pageProps -> initialData (o events)
+    # Intentamos obtener la lista de eventos
+    $eventos = $objPrincipal.props.pageProps.events.items
+    
+    if (-not $eventos) {
+        # Si no están ahí, probamos en otra ruta común de esta web
+        $eventos = $objPrincipal.props.pageProps.initialData.events.items
+    }
 
     if (-not $eventos) {
-        Write-Host "La estructura ha cambiado o no hay eventos en esta página." -ForegroundColor Yellow
+        Write-Host "Error: No se ha podido localizar la lista de eventos dentro del JSON." -ForegroundColor Red
         return
     }
 
     $listaFinal = New-Object System.Collections.Generic.List[PSCustomObject]
 
     foreach ($e in $eventos) {
-        # Creamos el objeto con el ID real que NO da error 404
+        # AQUÍ ESTÁ LA MAGIA: $e.id es el ID real (019ed40e-cea4...) 
+        # que funciona para el link, no el de la imagen.
         $listaFinal.Add([PSCustomObject]@{
             NombreEvento = $e.name
             UrlEvento    = "https://www.abonoteatro.com/evento/$($e.id)"
             Recinto      = $e.enclosure.name
             Categoria    = $e.category.name
-            Precio      = "$($e.price) €"
         })
     }
 
-    # 4. Guardar en el CSV (usando tu variable global $PTH_EVT)
-    if ($listaFinal.Count -gt 0) {
-        $listaFinal | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-        Write-Host "¡Carga finalizada! Se han guardado $($listaFinal.Count) eventos con enlaces correctos." -ForegroundColor Green
+    # 5. Deduplicar y Guardar
+    $resultado = $listaFinal | Group-Object NombreEvento | ForEach-Object { $_.Group[0] }
+
+    if ($resultado) {
+        $resultado | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        Write-Host "¡Éxito! Se han extraído $($resultado.Count) eventos con IDs de navegación reales." -ForegroundColor Green
     }
 }
 
@@ -508,7 +521,7 @@ if ($null -ne $resultado) {
     $driverActivo = $resultado.Driver
 
     # 2. Sacamos la lista de eventos con sus URLs (C:\temp\nombres_eventos.csv)
-    Listar-Eventos -driver $driver
+    Listar-Eventos -htmlDeLaWeb $htmlCargado
 
     # 3. Comparamos para ver qué hay de nuevo
     $listaParaTelegram = Comparar-Eventos
