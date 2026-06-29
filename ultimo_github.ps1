@@ -533,7 +533,7 @@ Function Enviar-NotificacionTelegram {
         }
         
         # Envío directo sin rodeos
-        #Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
+        Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
     }
 }
 
@@ -571,7 +571,7 @@ if ($null -ne $resultado) {
             $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
         # Llamamos a la función de envío
-            #Enviar-NotificacionTelegram -Mensaje $msg
+            Enviar-NotificacionTelegram -Mensaje $msg
         
             # Pausa de seguridad para no saturar el API de Telegram (antispam)
             Start-Sleep -Milliseconds 500
