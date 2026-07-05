@@ -489,6 +489,30 @@ function Subir-CambiosAlRepositorio {
     }
 }
 
+Function Preparar-InterceptorRouter {
+    param($driver)
+
+    $driver.ExecuteScript(@"
+if (!window.__routerPatched) {
+    window.__lastPushedUrl = null;
+    if (window.next && window.next.router) {
+        const originalPush = window.next.router.push.bind(window.next.router);
+        window.next.router.push = function(url, as, options) {
+            window.__lastPushedUrl = as || url;
+            return Promise.resolve(true); // bloquea la navegación real
+        };
+        window.__routerPatched = true;
+        window.__interceptorDisponible = true;
+    } else {
+        window.__interceptorDisponible = false;
+    }
+}
+"@)
+
+    $disponible = $driver.ExecuteScript("return window.__interceptorDisponible;")
+    return $disponible
+}
+
 Function Obtener-Urls-Nuevas {
     param($driver, $listaNuevos)
 
