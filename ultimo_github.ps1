@@ -586,53 +586,100 @@ Function Obtener-Urls-Nuevas-old {
     return $eventosConLinkReal
 }
 
+Function Preparar-InterceptorRouter {
+    param($driver)
+
+    $driver.ExecuteScript(@"
+if (!window.__routerPatched) {
+    window.__lastPushedUrl = null;
+    if (window.next && window.next.router) {
+        const originalPush = window.next.router.push.bind(window.next.router);
+        window.next.router.push = function(url, as, options) {
+            window.__lastPushedUrl = as || url;
+            return Promise.resolve(true); // bloquea la navegación real
+        };
+        window.__routerPatched = true;
+        window.__interceptorDisponible = true;
+    } else {
+        window.__interceptorDisponible = false;
+    }
+}
+"@)
+
+    $disponible = $driver.ExecuteScript("return window.__interceptorDisponible;")
+    return $disponible
+}
+
+
 Function Obtener-Urls-Nuevas {
     param($driver, $listaNuevos)
 
     $eventosConLinkReal = New-Object System.Collections.Generic.List[PSCustomObject]
-    
-    # Guardamos el identificador de la ventana principal (la del scroll)
-    $ventanaPrincipal = $driver.CurrentWindowHandle
-    $js = $driver -as [OpenQA.Selenium.IJavaScriptExecutor]
+
+    $interceptorOk = Preparar-InterceptorRouter -driver $driver
+    if (-not $interceptorOk) {
+        Write-Host "[!] window.next.router no disponible. Se usará el método con Back() (más lento)." -ForegroundColor Yellow
+    }
 
     foreach ($evento in $listaNuevos) {
         $nombre = $evento.NombreEvento
-        $urlDeLaLista = $evento.UrlEvento  # La URL que sacamos con el ID en la primera función
-        
         Write-Host "Procesando: $nombre" -ForegroundColor Cyan
 
         try {
-            # 1. EN LUGAR DE CLICAR: Abrimos la URL en una pestaña nueva usando JavaScript
-            # Esto evita el error de caracteres especiales del XPath y no pierde el scroll
-            $js.ExecuteScript("window.open('$urlDeLaLista', '_blank');")
+            
+            [void]$driver.ExecuteScript("window.__lastPushedUrl = null;")
+            Start-Sleep -Milliseconds 200
 
-            # 2. CAMBIAR EL FOCO A LA NUEVA PESTAÑA
-            Start-Sleep -Milliseconds 500
-            $todasLasVentanas = $driver.WindowHandles
-            $driver.SwitchTo().Window($todasLasVentanas[-1])
+            $selector = "//*[contains(normalize-space(text()), '$nombre')]"
+            $target = $driver.FindElement([OpenQA.Selenium.By]::XPath($selector))
 
-            # 3. ESPERAR Y CAPTURAR LA URL REAL
-            Start-Sleep -Seconds 2 # Esperamos a que cargue la ficha en la nueva pestaña
-            $urlReal = $driver.Url
-            Write-Host "   URL Real confirmada: $urlReal" -ForegroundColor Green
+            [void]$driver.ExecuteScript("arguments[0].scrollIntoView({block: 'center'});", $target)
+            Start-Sleep -Milliseconds 200
 
-            # 4. GUARDAR DATOS
-            $eventosConLinkReal.Add([PSCustomObject]@{
+            # En lugar de $target.Click(), usamos click nativo vía JS:
+            [void]$driver.ExecuteScript("arguments[0].click();", $target)
+            
+            $urlCapturada = $null
+            for ($i = 0; $i -lt 20; $i++) {
+                $urlCapturada = $driver.ExecuteScript("return window.__lastPushedUrl;")
+                if ($urlCapturada) { break }
+                Start-Sleep -Milliseconds 150
+            }
+
+            if (-not $urlCapturada) {
+                Write-Host "   [!] No se interceptó ninguna navegación para '$nombre'." -ForegroundColor Yellow
+                $nuevoObjeto = [PSCustomObject]@{
+                    NombreEvento = $nombre
+                    UrlEvento    = ""
+                    Recinto      = $evento.Recinto
+                }
+                [void]$eventosConLinkReal.Add($nuevoObjeto)
+                continue
+            }
+
+            $urlAbsoluta = if ($urlCapturada -match "^https?://") {
+                $urlCapturada
+            } else {
+                "https://www.abonoteatro.com$urlCapturada"
+            }
+
+            Write-Host "   URL: $urlAbsoluta" -ForegroundColor Green
+
+            $nuevoObjeto = [PSCustomObject]@{
                 NombreEvento = $nombre
-                UrlEvento    = $urlReal
+                UrlEvento    = $urlAbsoluta
                 Recinto      = $evento.Recinto
-            })
-
-            # 5. CERRAR PESTAÑA Y VOLVER A LA PRINCIPAL
-            # Así la página principal sigue exactamente donde estaba (con todo el scroll)
-            $driver.Close()
-            $driver.SwitchTo().Window($ventanaPrincipal)
+            }
+            [void]$eventosConLinkReal.Add($nuevoObjeto)
 
         } catch {
-            Write-Host "   [!] Error al procesar '$nombre'. Volviendo a la lista principal..." -ForegroundColor Yellow
-            # Si algo falla, intentamos volver a la principal para no detener el bucle
-            $driver.SwitchTo().Window($ventanaPrincipal)
-            $eventosConLinkReal.Add($evento) 
+            Write-Host "   [!] Error con '$nombre': $($_.Exception.Message)" -ForegroundColor Yellow
+            $nuevoObjeto = [PSCustomObject]@{
+                NombreEvento = $nombre
+                UrlEvento    = ""
+                Recinto      = $evento.Recinto
+            }
+            [void]$eventosConLinkReal.Add($nuevoObjeto)
         }
     }
     return $eventosConLinkReal
@@ -674,11 +721,13 @@ if ($null -ne $resultado) {
 
     #Vamos evento a evento para sacar la url correcta.
     if ($listaParaTelegram.Count -gt 0) {
-    
+       
         # 3. LLAMADA A LA NUEVA FUNCIÓN
         # Solo entramos en los eventos que realmente vamos a enviar a Telegram
-       $listaFinal = Obtener-Urls-Nuevas -driver $driverActivo -listaNuevos $listaParaTelegram
-
+        $listaFinal = Obtener-Urls-Nuevas -driver $driverActivo -listaNuevos $listaParaTelegram
+       
+        Write-Host "Cantidad de elementos: $($listaFinal.Count)"
+        $listaFinal | Format-Table NombreEvento, UrlEvento -AutoSize
         # 4. Ahora sí, envías a Telegram con la URL corregida
         # Enviar-Telegram -lista $eventosListosParaEnviar
     }
