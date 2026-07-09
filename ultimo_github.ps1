@@ -320,7 +320,7 @@ function MiFuncionSelenium {
         # ----------------------------------------
 
         # --- AQUÍ CARGAMOS TODOS LOS EVENTOS ---
-        Cargar-TodosLosEventos -driver $driver
+        # Cargar-TodosLosEventos -driver $driver
         # ----------------------------------------
 
         Write-Host "Capturando HTML completo con todos los eventos cargados..."
@@ -554,6 +554,7 @@ if ($null -ne $resultado) {
     $driverActivo = $resultado.Driver
     $listaFinal = @()
     $finProceso = (Get-Date).AddMinutes(15)
+
 
         do {
 
