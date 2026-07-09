@@ -77,12 +77,6 @@ function Cerrar-AvisoModal {
     }
 }
 
-function Escape-Html {
-    param([string]$texto)
-    if ($null -eq $texto) { return "" }
-    return $texto.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;")
-}
-
 function Iniciar-Driver {
     $options = [OpenQA.Selenium.Chrome.ChromeOptions]::new()
     if (Test-Path "C:\Program Files\Google\Chrome\Application\chrome.exe") {
@@ -245,18 +239,6 @@ function Hacer-Login {
     }
 }
 
-function Obtener-CookieSesion {
-    param($driver)
-    # NextAuth usa esta cookie para mantener la sesión
-    $cookie = $driver.Manage().Cookies.GetCookieNamed("__Secure-next-auth.session-token")
-    if ($null -eq $cookie) {
-        # En local (sin HTTPS) a veces no lleva el prefijo __Secure-
-        $cookie = $driver.Manage().Cookies.GetCookieNamed("next-auth.session-token")
-    }
-    return $cookie
-}
-
-
 Function Listar-Eventos {
     param($htmlDeLaWeb)
     
@@ -311,37 +293,6 @@ Function Listar-Eventos {
         Write-Host "Muestra del HTML recibido (primeros 200 caracteres):"
         Write-Host ($htmlString.Substring(0, [Math]::Min(200, $htmlString.Length))) -ForegroundColor Gray
     }
-}
-
-function Subir-CambiosAlRepositorio {
-    # NOTA: función pausada mientras probamos en local. Se reactivará cuando
-    # volvamos a desplegar en GitHub Actions (necesita GITHUB_TOKEN configurado).
-    param($archivo)
-    try {
-        Write-Host "Sincronizando $archivo con el repositorio web..." -ForegroundColor DarkCyan
-        git add $archivo
-        $status = git status --porcelain
-        if ($null -ne $status) {
-            git commit -m "Auto-update: Datos actualizados [$(Get-Date -Format 'HH:mm:ss')]"
-            git push
-            Write-Host "¡Cambios subidos con éxito!" -ForegroundColor Green
-        } else {
-            Write-Host "Sin cambios detectados en el CSV, saltando subida." -ForegroundColor Gray
-        }
-    } catch {
-        Write-Host "No se pudo subir al repositorio: $($_.Exception.Message)" -ForegroundColor Yellow
-    }
-}
-
-function Iniciar-CuentaAtras {
-    param([int]$segundosTotales)
-    for ($i = $segundosTotales; $i -gt 0; $i--) {
-        $tiempo = New-TimeSpan -Seconds $i
-        $reloj = "{0:D2}:{1:D2}" -f $tiempo.Minutes, $tiempo.Seconds
-        Start-Sleep -Seconds 1
-    }
-    Write-Host -NoNewline "`rPróxima revisión en: $reloj | Fin del script: $($fin.ToString('HH:mm:ss')) " -ForegroundColor Gray
-    Write-Host "`r" + (" " * 70) + "`r" -NoNewline
 }
 
 function MiFuncionSelenium {
@@ -443,20 +394,6 @@ Function Comparar-Eventos {
     Move-Item -Path $rutaNuevo -Destination $rutaOld -Force
 
     return $eventosNuevos
-}
-Function Obtener-DetalleEvento {
-    param($driver, $urlEvento)
-    
-    try {
-        Write-Host "Navegando a: $urlEvento" -ForegroundColor Gray
-        $driver.Navigate().GoToUrl($urlEvento)
-        Start-Sleep -Seconds 3 # Tiempo para que carguen las fechas
-        
-        return $driver.PageSource
-    } catch {
-        Write-Host "Error al entrar en el evento $urlEvento" -ForegroundColor Red
-        return $null
-    }
 }
 
 function Subir-CambiosAlRepositorio {
