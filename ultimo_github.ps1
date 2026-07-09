@@ -549,74 +549,66 @@ Function Enviar-NotificacionTelegram {
 $resultado = MiFuncionSelenium -horaReferencia $ultimaHora -pathAlCsv $csvPath
 
 if ($null -ne $resultado) {
+    
     $htmlCatalogo = $resultado.Html
     $driverActivo = $resultado.Driver
+    $listaFinal = @()
+    $finProceso = (Get-Date).AddMinutes(15)
 
-    # 2. Sacamos la lista de eventos con sus URLs (C:\temp\nombres_eventos.csv)
-     Listar-Eventos -htmlDeLaWeb $htmlCatalogo
+        do {
 
-    # 3. Comparamos para ver qué hay de nuevo
-    $listaParaTelegram = Comparar-Eventos
+        Write-Host ""
+        Write-Host "=============================" -ForegroundColor Cyan
+        Write-Host "Revision: $(Get-Date)"
+        Write-Host "=============================" -ForegroundColor Cyan
 
-    #Vamos evento a evento para sacar la url correcta.
-    if ($listaParaTelegram.Count -gt 0) {
-       
-        # 3. LLAMADA A LA NUEVA FUNCIÓN
-        # Solo entramos en los eventos que realmente vamos a enviar a Telegram
-        $listaFinal = Obtener-Urls-Nuevas -driver $driverActivo -listaNuevos $listaParaTelegram
-       
-        Write-Host "Cantidad de elementos: $($listaFinal.Count)"
-        $listaFinal | Format-Table NombreEvento, UrlEvento -AutoSize
-        # 4. Ahora sí, envías a Telegram con la URL corregida
-        # Enviar-Telegram -lista $eventosListosParaEnviar
-    }
+        # Refrescamos la pagina
+        $driverActivo.Navigate().GoToUrl("https://www.abonoteatro.com/programacion")
 
-    if ($null -ne $listaFinal) {
-        Write-Host "[+] Iniciando envío de alertas por Telegram..." -ForegroundColor Cyan
-    
-        foreach ($evento in $listaFinal) {
-            # Construimos un mensaje atractivo con el enlace real que ya extrajimos
-            $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
-            $msg += "📌 <b>$($evento.NombreEvento)</b>`n`n"
-            $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
+        Start-Sleep -Seconds 5
 
-        # Llamamos a la función de envío
-            #Enviar-NotificacionTelegram -Mensaje $msg
-        
-            # Pausa de seguridad para no saturar el API de Telegram (antispam)
-            Start-Sleep -Milliseconds 500
-    }
-    
-    
-    Write-Host "[+] Alertas enviadas correctamente." -ForegroundColor Green
-    } else {
-    Write-Host "[--] No hay eventos nuevos para notificar." -ForegroundColor Gray
-    }
+        # Bajamos hasta el final para que cargue todos los eventos
+        Cargar-TodosLosEventos -driver $driverActivo
 
-    # 4. Bucle para entrar en cada evento nuevo SIN CERRAR el navegador
-    <#if ($null -ne $listaParaTelegram) {
-        foreach ($evento in $listaParaTelegram) {
-            Write-Host "--- Procesando: $($evento.NombreEvento) ---" -ForegroundColor Magenta
-            
-            # Entramos en la web del evento para sacar sus detalles
-            $htmlDetalle = Obtener-DetalleEvento -driver $driverActivo -urlEvento $evento.UrlEvento
-            
-            if ($htmlDetalle) {
-                # Aquí llamarías a una función tuya para sacar la fecha/lugar del HTML
-                # Ejemplo: $datosExtra = Procesar-HTML-Detalle -html $htmlDetalle
-                Write-Host "Detalle capturado para $($evento.NombreEvento)" -ForegroundColor Green
+        # Capturamos HTML actualizado
+        $htmlCatalogo = $driverActivo.PageSource
+
+        # Generamos CSV
+        Listar-Eventos -htmlDeLaWeb $htmlCatalogo
+
+        # Comparamos
+        $listaParaTelegram = Comparar-Eventos
+
+        if ($null -ne $listaParaTelegram -and $listaParaTelegram.Count -gt 0) {
+
+            $listaFinal = Obtener-Urls-Nuevas `
+                -driver $driverActivo `
+                -listaNuevos $listaParaTelegram
+
+            foreach ($evento in $listaFinal) {
+
+                $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
+                $msg += "📌 <b>$($evento.NombreEvento)</b>`n`n"
+                $msg += "🔗 $($evento.UrlEvento)Ver evento</a>"
+
+                Enviar-NotificacionTelegram -Mensaje $msg
             }
-        }
-    } else {
-        Write-Host "No hay eventos nuevos para procesar." -ForegroundColor Yellow
-    }#>
 
-    # 5. AHORA SÍ: Cerramos el navegador al final de todo el proceso
-    Write-Host "Finalizado. Cerrando navegador..." -ForegroundColor Yellow
+            Subir-CambiosAlRepositorio -archivo $PTH_EVT_OLD
+        }
+
+        if ((Get-Date) -lt $finProceso) {
+            Write-Host "Esperando 3 minutos..." -ForegroundColor Yellow
+            Start-Sleep -Seconds 180
+        }
+
+    }
+    while ((Get-Date) -lt $finProceso)
+
+    Write-Host "Finalizado. Cerrando navegador..."
+
     $driverActivo.Quit()
     $driverActivo.Dispose()
-
-    Subir-CambiosAlRepositorio -archivo $PTH_EVT_OLD
 
 } else {
     Write-Host "No se pudo iniciar el proceso de Selenium." -ForegroundColor Red
