@@ -592,7 +592,7 @@ if ($null -ne $resultado) {
                 $msg += "📌 <b>$($evento.NombreEvento)</b>`n`n"
                 $msg += "🔗 $($evento.UrlEvento)Ver evento</a>"
 
-                # Enviar-NotificacionTelegram -Mensaje $msg
+                Enviar-NotificacionTelegram -Mensaje $msg
             }
 
             Subir-CambiosAlRepositorio -archivo $PTH_EVT_OLD
