@@ -2,8 +2,8 @@ name: Ejecutar Bot Abonoteatro
 
 on:
    
-#  schedule:
-#    - cron: '*/15 * * * *'  # Se ejecuta cada 10 minutos
+  schedule:
+    - cron: '*/15 * * * *'  # Se ejecuta cada 10 minutos
   workflow_dispatch:       # Permite darle al botón "Run" a mano (alineado con schedule)
 
 concurrency:
