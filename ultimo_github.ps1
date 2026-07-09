@@ -599,8 +599,9 @@ if ($null -ne $resultado) {
         }
 
         if ((Get-Date) -lt $finProceso) {
-            Write-Host "Esperando 3 minutos..." -ForegroundColor Yellow
-            Start-Sleep -Seconds 180
+            $espera = Get-Random -Minimum 165 -Maximum 196
+            Write-Host "Esperando $espera segundos..." -ForegroundColor Yellow
+            Start-Sleep -Seconds $espera
         }
 
     }
