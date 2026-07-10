@@ -80,35 +80,26 @@ function Cerrar-AvisoModal {
 function Iniciar-Driver {
     $options = [OpenQA.Selenium.Chrome.ChromeOptions]::new()
     
-    # Detección del SO
-    $isWindows = [System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Windows)
+    # Cambiamos el nombre de la variable para evitar el conflicto
+    $esSistemaWindows = [System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Windows)
     
-    # Configuración de nombres y rutas según SO
-    if ($isWindows) {
-        $driverName = "chromedriver.exe"
+    if ($esSistemaWindows) {
+        # En Windows usamos la variable de entorno que da GitHub Actions
         $rutaDriver = $env:CHROMEWEBDRIVER
-        if (Test-Path "C:\Program Files\Google\Chrome\Application\chrome.exe") {
-            $options.BinaryLocation = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-        }
+        $driverName = "chromedriver.exe"
     } else {
+        # En Linux/Ubuntu, el driver está en /usr/bin/chromedriver (si instalas chromium-chromedriver)
+        $rutaDriver = "/usr/bin"
         $driverName = "chromedriver"
-        $rutaDriver = "/usr/local/share/chromedriver-linux64"
     }
 
-    # Si estamos en GitHub Actions, podemos sobrescribir la ruta si es necesario
-    if ($env:GITHUB_ACTIONS) {
-        $rutaDriver = "/usr/bin" # Donde normalmente se instala en Linux en GH Actions
-    }
-
-    # Construir la ruta completa
     $pathCompleto = Join-Path $rutaDriver $driverName
     
-    # Validación unificada
     if (!(Test-Path $pathCompleto)) {
         throw "No se encontró el driver en: $pathCompleto"
     }
 
-    # Opciones de Selenium
+    # Opciones (Headless obligatorio en servidores)
     $options.AddArgument("--headless=new")
     $options.AddArgument("--no-sandbox")
     $options.AddArgument("--disable-dev-shm-usage")
