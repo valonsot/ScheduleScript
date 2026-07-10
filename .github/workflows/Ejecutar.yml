@@ -12,7 +12,7 @@ concurrency:
    
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     permissions:
       contents: write # PERMISO CRÍTICO para poder modificar el archivo CSV en el repo
