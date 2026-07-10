@@ -604,6 +604,8 @@ if ($null -ne $resultado) {
                 -driver $driverActivo `
                 -listaNuevos $listaParaTelegram
 
+            write-host $listaFinal
+
             foreach ($evento in $listaFinal) {
                 $nombre = [System.Net.WebUtility]::HtmlEncode($evento.NombreEvento)
                 $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
