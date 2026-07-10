@@ -150,6 +150,21 @@ function Cerrar-BannerCookies {
     return $false
 }
 
+function Esperar-Elemento {
+    param($driver, $by, [int]$timeoutSegundos = 20)
+    $intentos = $timeoutSegundos * 2  # comprobamos cada 0.5s
+    for ($i = 0; $i -lt $intentos; $i++) {
+        try {
+            $el = $driver.FindElement($by)
+            if ($el.Displayed) { return $el }
+        } catch {
+            # Elemento aún no existe en el DOM, seguimos esperando
+        }
+        Start-Sleep -Milliseconds 500
+    }
+    throw "Timeout esperando el elemento tras $timeoutSegundos segundos."
+}
+
 function Hacer-Login {
     param($driver)
 
