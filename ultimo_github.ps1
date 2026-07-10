@@ -398,7 +398,7 @@ Function Comparar-Eventos {
 
     # Rotamos archivos
     Move-Item -Path $rutaNuevo -Destination $rutaOld -Force
-
+    write-host "actualizo archivo de eventos"
     return $eventosNuevos
 }
 
