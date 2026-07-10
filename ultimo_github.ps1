@@ -559,7 +559,7 @@ if ($null -ne $resultado) {
     $htmlCatalogo = $resultado.Html
     $driverActivo = $resultado.Driver
     $listaFinal = @()
-    $finProceso = (Get-Date).AddMinutes(15)
+    $finProceso = (Get-Date).AddMinutes(13)
 
 
         do {
