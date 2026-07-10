@@ -479,6 +479,7 @@ Function Obtener-Urls-Nuevas {
 
     foreach ($evento in $listaNuevos) {
         $nombre = $evento.NombreEvento
+        $teatro = $evento.Teatro
         Write-Host "Procesando: $nombre" -ForegroundColor Cyan
 
         try {
@@ -507,7 +508,7 @@ Function Obtener-Urls-Nuevas {
                 $nuevoObjeto = [PSCustomObject]@{
                     NombreEvento = $nombre
                     UrlEvento    = ""
-                    Recinto      = $evento.Recinto
+                    Recinto      = $Teatro
                 }
                 [void]$eventosConLinkReal.Add($nuevoObjeto)
                 continue
@@ -524,7 +525,7 @@ Function Obtener-Urls-Nuevas {
             $nuevoObjeto = [PSCustomObject]@{
                 NombreEvento = $nombre
                 UrlEvento    = $urlAbsoluta
-                Recinto      = $evento.Recinto
+                Recinto      = $Teatro
             }
             [void]$eventosConLinkReal.Add($nuevoObjeto)
 
@@ -533,7 +534,7 @@ Function Obtener-Urls-Nuevas {
             $nuevoObjeto = [PSCustomObject]@{
                 NombreEvento = $nombre
                 UrlEvento    = ""
-                Recinto      = $evento.Recinto
+                Recinto      = $Teatro
             }
             [void]$eventosConLinkReal.Add($nuevoObjeto)
         }
@@ -607,7 +608,7 @@ if ($null -ne $resultado) {
                 $nombre = [System.Net.WebUtility]::HtmlEncode($evento.NombreEvento)
                 $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
                 $msg += "📌 <b>$nombre</b>`n`n"
-                $msg += "📍 <b>$($evento.Teatro)</b>`n`n"
+                $msg += "📍 <b>$Teatro</b>`n`n"
                 $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
                 Enviar-NotificacionTelegram -Mensaje $msg
