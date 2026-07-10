@@ -609,8 +609,8 @@ if ($null -ne $resultado) {
             foreach ($evento in $listaFinal) {
                 $nombre = [System.Net.WebUtility]::HtmlEncode($evento.NombreEvento)
                 $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
-                $msg += "📌 <b>$nombre</b>`n`n"
-                $msg += "📍 <b>$Teatro</b>`n`n"
+                $msg += "📌 <b>$($evento.NombreEvento)</b>`n`n"
+                $msg += "📍 <b>$($evento.Recinto)</b>`n`n"
                 $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
                 Enviar-NotificacionTelegram -Mensaje $msg
