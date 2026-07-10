@@ -108,7 +108,7 @@ function Iniciar-Driver {
     $options.AddExcludedArgument("enable-automation")
     $options.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36")
 
-    Ayuda a que el driver no dependa de la memoria compartida del sistema host
+    #Ayuda a que el driver no dependa de la memoria compartida del sistema host
     $options.AddArgument("--disable-gpu") 
     
     # Asegura que el driver no intente buscar impresoras o archivos locales del servidor
