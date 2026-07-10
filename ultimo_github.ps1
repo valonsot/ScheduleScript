@@ -267,7 +267,9 @@ Function Listar-Eventos {
     # - (?i) hace que no distinga entre mayúsculas y minúsculas
     # - Se flexibiliza el separador de la URL (acepta %252F, %2F o /)
     # - Se flexibiliza la longitud del ID
-    $regex = '(?i)alt="(?<nombre>[^"]+?)".*?files(?:%252F|%2F|/)(?<id>[a-f0-9-]+?)(?:%252F|%2F|/|raw)'
+    # $regex = '(?i)alt="(?<nombre>[^"]+?)".*?files(?:%252F|%2F|/)(?<id>[a-f0-9-]+?)(?:%252F|%2F|/|raw)'
+    
+    $regex = '(?i)alt="(?<nombre>[^"]+?)".*?files(?:%252F|%2F|/)(?<id>[a-f0-9-]+?)(?:%252F|%2F|/|raw).*?tabler-icon-map-pin.*?title="(?<teatro>[^"]+?)"'
     
     $coincidencias = [regex]::Matches($htmlString, $regex)
 
@@ -279,6 +281,7 @@ Function Listar-Eventos {
     foreach ($m in $coincidencias) {
         $n = $m.Groups['nombre'].Value.Trim()
         $id = $m.Groups['id'].Value
+        $teatro = $m.Groups['teatro'].Value.Trim()
 
         # Filtro de categorías
         $ignorar = "image|Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
@@ -286,6 +289,7 @@ Function Listar-Eventos {
         if ($n -notmatch "^($ignorar)$" -and $n -ne "") {
             $lista.Add([PSCustomObject]@{
                 NombreEvento = $n
+                Teatro       = $teatro
                 UrlEvento    = "https://www.abonoteatro.com/evento/$id"
             })
         }
@@ -603,6 +607,7 @@ if ($null -ne $resultado) {
                 $nombre = [System.Net.WebUtility]::HtmlEncode($evento.NombreEvento)
                 $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
                 $msg += "📌 <b>$nombre</b>`n`n"
+                $msg += "📍 <b>$($evento.Teatro)</b>`n`n"
                 $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
                 Enviar-NotificacionTelegram -Mensaje $msg
