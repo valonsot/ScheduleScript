@@ -39,12 +39,12 @@ if ([string]::IsNullOrWhiteSpace($loginUser) -or [string]::IsNullOrWhiteSpace($l
 }
 
 # 1. CARGAR SELENIUM (Solo una vez)
+
 if (-not (Get-Module -ListAvailable Selenium)) {
     Install-Module -Name Selenium -Force -Scope CurrentUser -AllowClobber
 }
 $module = Get-Module -ListAvailable Selenium | Select-Object -First 1
 $dllPath = Get-ChildItem -Path $module.ModuleBase -Filter "WebDriver.dll" -Recurse | Select-Object -First 1 -ExpandProperty FullName
-Add-Type -Path $dllPath
 
 if (-not (Test-Path $dllPath)) {
     Write-Host "ERROR: No se encuentra WebDriver.dll en '$dllPath'" -ForegroundColor Red
@@ -79,12 +79,36 @@ function Cerrar-AvisoModal {
 
 function Iniciar-Driver {
     $options = [OpenQA.Selenium.Chrome.ChromeOptions]::new()
-    if (Test-Path "C:\Program Files\Google\Chrome\Application\chrome.exe") {
-        $options.BinaryLocation = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+    
+    # Detección del SO
+    $isWindows = [System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Windows)
+    
+    # Configuración de nombres y rutas según SO
+    if ($isWindows) {
+        $driverName = "chromedriver.exe"
+        $rutaDriver = $env:CHROMEWEBDRIVER
+        if (Test-Path "C:\Program Files\Google\Chrome\Application\chrome.exe") {
+            $options.BinaryLocation = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+        }
+    } else {
+        $driverName = "chromedriver"
+        $rutaDriver = "/usr/local/share/chromedriver-linux64"
     }
-    # --headless desactivado temporalmente para PRUEBAS EN LOCAL:
-    # así puedes ver el navegador abrirse y confirmar visualmente que el login funciona.
-    # Cuando lo confirmemos, lo volvemos a activar.
+
+    # Si estamos en GitHub Actions, podemos sobrescribir la ruta si es necesario
+    if ($env:GITHUB_ACTIONS) {
+        $rutaDriver = "/usr/bin" # Donde normalmente se instala en Linux en GH Actions
+    }
+
+    # Construir la ruta completa
+    $pathCompleto = Join-Path $rutaDriver $driverName
+    
+    # Validación unificada
+    if (!(Test-Path $pathCompleto)) {
+        throw "No se encontró el driver en: $pathCompleto"
+    }
+
+    # Opciones de Selenium
     $options.AddArgument("--headless=new")
     $options.AddArgument("--no-sandbox")
     $options.AddArgument("--disable-dev-shm-usage")
@@ -93,36 +117,12 @@ function Iniciar-Driver {
     $options.AddExcludedArgument("enable-automation")
     $options.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36")
 
-    # RUTA DEL CHROMEDRIVER: usamos la carpeta real del equipo ($driverPath, definida arriba)
-    $rutaDriver = if ($env:CHROMEWEBDRIVER) { $env:CHROMEWEBDRIVER } else { $driverPath }
-
-    Write-Host "[DEBUG] rutaDriver final = '$rutaDriver'" -ForegroundColor Magenta
-    if (-not (Test-Path (Join-Path $rutaDriver "chromedriver.exe"))) {
-        Write-Host "⚠️ No se encuentra chromedriver.exe en '$rutaDriver'." -ForegroundColor Red
-        Write-Host "   Descárgalo desde https://googlechromelabs.github.io/chrome-for-testing/ (versión que coincida con tu Chrome)" -ForegroundColor Red
-        Write-Host "   y colócalo en esa carpeta." -ForegroundColor Red
-        throw "chromedriver.exe no encontrado en '$rutaDriver'"
-    }
-
+    Write-Host "[DEBUG] Iniciando Driver en: $pathCompleto" -ForegroundColor Magenta
+    
+    # Inicialización del Driver
     $driver = New-Object OpenQA.Selenium.Chrome.ChromeDriver($rutaDriver, $options)
     return $driver
 }
-
-function Esperar-Elemento {
-    param($driver, $by, [int]$timeoutSegundos = 20)
-    $intentos = $timeoutSegundos * 2  # comprobamos cada 0.5s
-    for ($i = 0; $i -lt $intentos; $i++) {
-        try {
-            $el = $driver.FindElement($by)
-            if ($el.Displayed) { return $el }
-        } catch {
-            # Elemento aún no existe en el DOM, seguimos esperando
-        }
-        Start-Sleep -Milliseconds 500
-    }
-    throw "Timeout esperando el elemento tras $timeoutSegundos segundos."
-}
-
 function Esperar-CondicionUrl {
     param($driver, [scriptblock]$condicion, [int]$timeoutSegundos = 20)
     $intentos = $timeoutSegundos * 2
