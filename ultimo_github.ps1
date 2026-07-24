@@ -696,7 +696,7 @@ if ($null -ne $resultado) {
                 $msg += "📅 <b>FECHAS DISPONIBLES:</b>`n"
                 $msg += "$textoFechas`n" # <--- Aquí insertamos el bloque de fechas que construimos arriba
 
-                $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
+                $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para acceder al evento</a>"
 
                 Enviar-NotificacionTelegram -Mensaje $msg
             }
