@@ -563,6 +563,70 @@ Function Enviar-NotificacionTelegram {
     }
 }
 
+function Obtener-DetallesEvento {
+   
+    param(
+        [Parameter(Mandatory=$true)] $driver, # Recibes el objeto del driver
+        [string]$url
+    )
+    
+    # Abrimos nueva pestaña
+    $null = $driver.ExecuteScript("window.open('');")
+    $tabs = $driver.WindowHandles
+    $null = $driver.SwitchTo().Window($tabs[$tabs.Count - 1])
+    
+    # Navegamos
+    $null = $driver.Navigate().GoToUrl($url)
+    Start-Sleep -Seconds 3 # Damos tiempo a que cargue
+    
+    # Extraemos el HTML o elementos específicos
+    $htmlPagina = $driver.PageSource
+    
+    # Aquí puedes hacer tu lógica de extracción (ej. buscar un elemento específico)
+    # Por ejemplo: $descripcion = $driver.FindElement(...).Text
+    
+    # Cerramos y volvemos
+    $null = $driver.Close()
+    $null = $driver.SwitchTo().Window($tabs[0])
+    
+    # Suponiendo que $htmlContent es tu variable con el contenido del fichero
+    # Usamos una expresión que busque el contenido dentro de las etiquetas de fecha
+    #$regex = 'id="event-details-sessions-billboard-portal">(.*?)</span>'
+
+    # Buscamos todas las ocurrencias en el texto
+    #$todasLasFechas = [regex]::Matches($htmlPagina, $regex)
+
+    #Write-host $todasLasFechas
+
+    # Usamos el contenido ya cargado en tu variable de Selenium
+    $html = $htmlPagina
+
+   # Definimos el patrón Regex
+    # (?s) permite que el punto coincida con saltos de línea si los hubiera
+    # bg-lime-450 es el ancla del contenedor verde de la fecha
+    $pattern = '(?s)bg-lime-450.*?uppercase">(?<fecha>.*?)</span>.*?capitalize">(?<dia>.*?)</span>'
+
+    # Buscamos todas las coincidencias
+    $matche = [regex]::Matches($html, $pattern)
+
+    # Creamos una lista para guardar los resultados de forma limpia
+    $resultados = foreach ($m in $matche) {
+        [PSCustomObject]@{
+            Fecha = $m.Groups['fecha'].Value.Trim()
+            Dia   = $m.Groups['dia'].Value.Trim()
+        }
+    }
+
+    # Mostrar los resultados por pantalla
+    # $resultados | Format-Table -AutoSize
+    # Devolvemos el resultado $resultados
+
+    return $resultados
+
+}
+
+
+
 # 1. Ejecutamos la carga inicial. Obtenemos el HTML y mantenemos el DRIVER abierto.
 $resultado = MiFuncionSelenium -horaReferencia $ultimaHora -pathAlCsv $csvPath
 
@@ -607,10 +671,31 @@ if ($null -ne $resultado) {
             write-host $listaFinal
 
             foreach ($evento in $listaFinal) {
+                $detallesurl = Obtener-DetallesEvento -driver $driverActivo -url $evento.UrlEvento
+
+
+                # 2. Convertimos el array de fechas en un texto legible para Telegram
+                $textoFechas = ""
+                if ($null -ne $detallesurl) {
+                    # Limitamos por si acaso hay muchísimas fechas (ej. las primeras 10)
+                    # o puedes poner simplemente $detallesurl para poner todas
+                    foreach ($f in $detallesurl) {
+                        $textoFechas += "🗓 $($f.Dia), $($f.Fecha)`n"
+                    }
+                } else {
+                    $textoFechas = "No se encontraron fechas próximas.`n"
+                }
+
+
                 $nombre = [System.Net.WebUtility]::HtmlEncode($evento.NombreEvento)
+                $Recinto = [System.Net.WebUtility]::HtmlEncode($evento.Recinto)
                 $msg = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
-                $msg += "📌 <b>$($evento.NombreEvento)</b>`n`n"
-                $msg += "📍 <b>$($evento.Recinto)</b>`n`n"
+                $msg += "📌 <b>$Nombre</b>`n`n"
+                $msg += "📍 <b>$Recinto</b>`n`n"
+
+                $msg += "📅 <b>FECHAS DISPONIBLES:</b>`n"
+                $msg += "$textoFechas`n" # <--- Aquí insertamos el bloque de fechas que construimos arriba
+
                 $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para ver fechas y lugar</a>"
 
                 Enviar-NotificacionTelegram -Mensaje $msg
