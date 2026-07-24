@@ -279,10 +279,12 @@ Function Listar-Eventos {
     $lista = New-Object System.Collections.Generic.List[PSCustomObject]
 
     foreach ($m in $coincidencias) {
-        $n = $m.Groups['nombre'].Value.Trim()
+        #$n = $m.Groups['nombre'].Value.Trim()
+        $n = [System.Net.WebUtility]::HtmlDecode($m.Groups['nombre'].Value.Trim())
         $id = $m.Groups['id'].Value
-        $teatro = $m.Groups['teatro'].Value.Trim()
-
+        #$teatro = $m.Groups['teatro'].Value.Trim()
+        $teatro = [System.Net.WebUtility]::HtmlDecode($m.Groups['teatro'].Value.Trim())
+        
         # Filtro de categorías
         $ignorar = "image|Teatro|Música|Circo|Cabaret|Infantil|Familiar|Danza|Cine|Deporte|Monólogo|Magia|Conferencia|Talleres|Visitas|Abonoteatro"
         
@@ -698,7 +700,7 @@ if ($null -ne $resultado) {
 
                 $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para acceder al evento</a>"
 
-                Enviar-NotificacionTelegram -Mensaje $msg
+                 # Enviar-NotificacionTelegram -Mensaje $msg
             }
 
             Subir-CambiosAlRepositorio -archivo $PTH_EVT_OLD
