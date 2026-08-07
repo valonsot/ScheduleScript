@@ -33,6 +33,7 @@ Function Enviar-NotificacionTelegram {
 
 
 # 1. CSRF token (guarda cookies en $session)
+write-host "$baseUrl/api/auth/csrf"
 $csrfResponse = Invoke-RestMethod -Uri "$baseUrl/api/auth/csrf" -Method GET -SessionVariable session
 $csrfToken = $csrfResponse.csrfToken
 
