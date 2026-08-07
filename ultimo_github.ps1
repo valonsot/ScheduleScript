@@ -700,7 +700,7 @@ if ($null -ne $resultado) {
 
                 $msg += "🔗 <a href='$($evento.UrlEvento)'>Pulsa aquí para acceder al evento</a>"
 
-                Enviar-NotificacionTelegram -Mensaje $msg
+                # Enviar-NotificacionTelegram -Mensaje $msg
             }
 
             Subir-CambiosAlRepositorio -archivo $PTH_EVT_OLD
