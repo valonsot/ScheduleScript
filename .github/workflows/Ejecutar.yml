@@ -37,22 +37,20 @@ jobs:
         run: |
           ./ultimo_github.ps1
 
-      - name: Guardar cambios en el repositorio
+      - name: Commit CSV changes
         shell: pwsh
         run: |
-          git config --global user.name 'GitHub Action Bot'
-          git config --global user.email 'action@github.com'
-          
-          # Añadimos el archivo CSV que el script ha modificado
-          git add eventos_abonoteatro_proticketing.csv
-          
-          # Comprobamos si hay cambios reales para subir
-          $status = git status --porcelain
-          if ($status) {
-              Write-Host "Guardando cambios en el repositorio..."
-              git commit -m "Auto-update: Actualizar eventos_abonoteatro_proticketing.csv"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add eventos.csv
+
+          $status = git diff --staged --quiet
+          if ($LASTEXITCODE -ne 0) {
+              git commit -m "Actualizar eventos.csv [skip ci]"
               git push
           } else {
-              Write-Host "No hay cambios que guardar."
+              Write-Host "No hay cambios en eventos.csv, no se hace commit."
           }
+         
+           
      
