@@ -31,6 +31,13 @@ Function Enviar-NotificacionTelegram {
     }
 }
 
+$duracionTotalMinutos = 15
+$tiempoInicio = Get-Date
+$tiempoLimite = $tiempoInicio.AddMinutes($duracionTotalMinutos)
+
+$iteracion = 1
+
+
 
 # 1. CSRF token (guarda cookies en $session)
 write-host "$baseUrl/api/auth/csrf"
@@ -89,128 +96,138 @@ $allEvents = @()
 $page = 1
 $itemsPerPage = 36
 
-do {
-    $response = Invoke-RestMethod -Uri "https://api.abonoteatro.com/api/web/events?page=$page&itemsPerPage=$itemsPerPage" `
-        -Method GET -Headers $apiHeaders
+while ((Get-Date) -lt $tiempoLimite) {
+        Write-Host "=== Iteración $iteracion - $(Get-Date -Format 'HH:mm:ss') ==="
+        do {
+            $response = Invoke-RestMethod -Uri "https://api.abonoteatro.com/api/web/events?page=$page&itemsPerPage=$itemsPerPage" `
+                -Method GET -Headers $apiHeaders
+        
+            $allEvents += $response.items
+            Write-Host "Página $page : $($response.items.Count) eventos (acumulado: $($allEvents.Count))"
+        
+            $page++
+            Start-Sleep -Seconds 2   # evita machacar la API
+        
+        } while ($response.items.Count -eq $itemsPerPage)
+        
+        Write-Host "TOTAL FINAL: $($allEvents.Count) eventos"
+        
+        # Quitar duplicados por si acaso (algunas APIs paginadas pueden solaparse si hay cambios entre llamadas)
+        $allEventsUnique = $allEvents | Sort-Object -Property id -Unique
+        Write-Host "Total únicos: $($allEventsUnique.Count)"
+        
+        # Si ya tienes $allEventsUnique de antes, úsalo directamente.
+        # Si partes del archivo JSON guardado:
+        $currentData = $allEventsUnique | ForEach-Object {
+            [PSCustomObject]@{
+                id                         = $_.id
+                name                       = $_.name
+                startAt                    = $_.startAt
+                endAt                      = $_.endAt
+                enclosureName              = $_.enclosure.name
+                enclosureAddress           = $_.enclosure.address
+                types                      = ($_.types.name -join "; ")
+                priceMinTicketSubscription = $_.priceMinTicketSubscription
+                priceMaxTicket             = $_.priceMaxTicket
+                eventFormat                = $_.eventFormat
+                dailyAtDays                = $_.dailyAtDays
+                photoId                    = $_.photos[0].id
+            }
+        }
+        
+        # --- 4. Cargar snapshot anterior si existe ---
+        if (Test-Path $PTH_EVT) {
+            $previousData = Import-Csv -Path $PTH_EVT -Delimiter ";"
+        } else {
+            $previousData = @()
+            Write-Host "No había CSV previo, se tratará todo como 'nuevo'."
+        }
+        
+        $previousIds = $previousData.id
+        $currentIds  = $currentData.id
+        
+        # --- 5. Detectar nuevos (id no estaba antes) ---
+        $nuevos = $currentData | Where-Object { $previousIds -notcontains $_.id }
+        
+        # --- 6. Detectar eliminados (id ya no está ahora) ---
+        $eliminados = $previousData | Where-Object { $currentIds -notcontains $_.id }
+        
+        # --- 7. Montar el listado de cambios ---
+        $changes = @()
+        
+        foreach ($e in $nuevos) {
+            $changes += [PSCustomObject]@{
+                changeType     = "NUEVO"
+                id             = $e.id
+                name           = $e.name
+                startAt        = $e.startAt
+                endAt          = $e.endAt
+                priceMaxTicket = $e.priceMaxTicket
+            }
+        }
+        
+        foreach ($e in $eliminados) {
+            $changes += [PSCustomObject]@{
+                changeType     = "ELIMINADO"
+                id             = $e.id
+                name           = $e.name
+                startAt        = $e.startAt
+                endAt          = $e.endAt
+                priceMaxTicket = $e.priceMaxTicket
+            }
+        }
+        
+        # --- 8. Guardar cambios si los hay ---
+        if ($changes.Count -gt 0) {
+            $changes | Export-Csv -Path $PTH_EVT_OLD -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+            Write-Host "Cambios detectados: $($changes.Count) (Nuevos: $($nuevos.Count), Eliminados: $($eliminados.Count)) -> guardado en $PTH_EVT_OLD"
+        } else {
+            Write-Host "No hay cambios respecto al snapshot anterior."
+        }
+        
+        # --- 9. Sobrescribir eventos.csv con el snapshot actualizado ---
+        $currentData | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+        Write-Host "eventos.csv actualizado con $($currentData.Count) eventos."
+        
+        # --- Notificar cada evento nuevo ---
+        foreach ($evento in $nuevos) {
+        
+            $nombre  = [System.Net.WebUtility]::HtmlEncode($evento.name)
+            $recinto = [System.Net.WebUtility]::HtmlEncode($evento.enclosureName)
+        
+            # Formatear fechas de forma legible
+            try {
+                $fechaInicio = ([datetime]$evento.startAt).ToString("dd/MM/yyyy HH:mm")
+                $fechaFin    = ([datetime]$evento.endAt).ToString("dd/MM/yyyy HH:mm")
+            } catch {
+                $fechaInicio = $evento.startAt
+                $fechaFin    = $evento.endAt
+            }
+        
+            $msg  = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
+            $msg += "📌 <b>$nombre</b>`n`n"
+            $msg += "📍 <b>$recinto</b>`n`n"
+            $msg += "📅 <b>FECHAS:</b>`n"
+            $msg += "🗓 Desde: $fechaInicio`n"
+            $msg += "🗓 Hasta: $fechaFin`n`n"
+            $msg += "💶 Precio hasta: $($evento.priceMaxTicket) €`n`n"
+            $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$($evento.id)'>Pulsa aquí para ver más</a>"
+        
+            Write-Host $msg
+            Enviar-NotificacionTelegram -Mensaje $msg
+        
+            Start-Sleep -Milliseconds 500   # evita rate-limit de Telegram
+        }
 
-    $allEvents += $response.items
-    Write-Host "Página $page : $($response.items.Count) eventos (acumulado: $($allEvents.Count))"
+        $iteracion++
 
-    $page++
-    Start-Sleep -Seconds 2   # evita machacar la API
-
-} while ($response.items.Count -eq $itemsPerPage)
-
-Write-Host "TOTAL FINAL: $($allEvents.Count) eventos"
-
-# Quitar duplicados por si acaso (algunas APIs paginadas pueden solaparse si hay cambios entre llamadas)
-$allEventsUnique = $allEvents | Sort-Object -Property id -Unique
-Write-Host "Total únicos: $($allEventsUnique.Count)"
-
-# Si ya tienes $allEventsUnique de antes, úsalo directamente.
-# Si partes del archivo JSON guardado:
-$currentData = $allEventsUnique | ForEach-Object {
-    [PSCustomObject]@{
-        id                         = $_.id
-        name                       = $_.name
-        startAt                    = $_.startAt
-        endAt                      = $_.endAt
-        enclosureName              = $_.enclosure.name
-        enclosureAddress           = $_.enclosure.address
-        types                      = ($_.types.name -join "; ")
-        priceMinTicketSubscription = $_.priceMinTicketSubscription
-        priceMaxTicket             = $_.priceMaxTicket
-        eventFormat                = $_.eventFormat
-        dailyAtDays                = $_.dailyAtDays
-        photoId                    = $_.photos[0].id
+        # --- 6. Esperar entre 2:50 y 3:10 antes de la siguiente pasada, sin pasarnos del tiempo límite ---
+        if ((Get-Date) -lt $tiempoLimite) {
+            $esperaSegundos = Get-Random -Minimum 170 -Maximum 191   # 2:50 a 3:10
+            Write-Host "Esperando $esperaSegundos segundos hasta la próxima iteración..."
+            Start-Sleep -Seconds $esperaSegundos
     }
 }
-
-# --- 4. Cargar snapshot anterior si existe ---
-if (Test-Path $PTH_EVT) {
-    $previousData = Import-Csv -Path $PTH_EVT -Delimiter ";"
-} else {
-    $previousData = @()
-    Write-Host "No había CSV previo, se tratará todo como 'nuevo'."
-}
-
-$previousIds = $previousData.id
-$currentIds  = $currentData.id
-
-# --- 5. Detectar nuevos (id no estaba antes) ---
-$nuevos = $currentData | Where-Object { $previousIds -notcontains $_.id }
-
-# --- 6. Detectar eliminados (id ya no está ahora) ---
-$eliminados = $previousData | Where-Object { $currentIds -notcontains $_.id }
-
-# --- 7. Montar el listado de cambios ---
-$changes = @()
-
-foreach ($e in $nuevos) {
-    $changes += [PSCustomObject]@{
-        changeType     = "NUEVO"
-        id             = $e.id
-        name           = $e.name
-        startAt        = $e.startAt
-        endAt          = $e.endAt
-        priceMaxTicket = $e.priceMaxTicket
-    }
-}
-
-foreach ($e in $eliminados) {
-    $changes += [PSCustomObject]@{
-        changeType     = "ELIMINADO"
-        id             = $e.id
-        name           = $e.name
-        startAt        = $e.startAt
-        endAt          = $e.endAt
-        priceMaxTicket = $e.priceMaxTicket
-    }
-}
-
-# --- 8. Guardar cambios si los hay ---
-if ($changes.Count -gt 0) {
-    $changes | Export-Csv -Path $PTH_EVT_OLD -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-    Write-Host "Cambios detectados: $($changes.Count) (Nuevos: $($nuevos.Count), Eliminados: $($eliminados.Count)) -> guardado en $PTH_EVT_OLD"
-} else {
-    Write-Host "No hay cambios respecto al snapshot anterior."
-}
-
-# --- 9. Sobrescribir eventos.csv con el snapshot actualizado ---
-$currentData | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-Write-Host "eventos.csv actualizado con $($currentData.Count) eventos."
-
-# --- Notificar cada evento nuevo ---
-foreach ($evento in $nuevos) {
-
-    $nombre  = [System.Net.WebUtility]::HtmlEncode($evento.name)
-    $recinto = [System.Net.WebUtility]::HtmlEncode($evento.enclosureName)
-
-    # Formatear fechas de forma legible
-    try {
-        $fechaInicio = ([datetime]$evento.startAt).ToString("dd/MM/yyyy HH:mm")
-        $fechaFin    = ([datetime]$evento.endAt).ToString("dd/MM/yyyy HH:mm")
-    } catch {
-        $fechaInicio = $evento.startAt
-        $fechaFin    = $evento.endAt
-    }
-
-    $msg  = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
-    $msg += "📌 <b>$nombre</b>`n`n"
-    $msg += "📍 <b>$recinto</b>`n`n"
-    $msg += "📅 <b>FECHAS:</b>`n"
-    $msg += "🗓 Desde: $fechaInicio`n"
-    $msg += "🗓 Hasta: $fechaFin`n`n"
-    $msg += "💶 Precio hasta: $($evento.priceMaxTicket) €`n`n"
-    $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$($evento.id)'>Pulsa aquí para ver más</a>"
-
-    Write-Host $msg
-    Enviar-NotificacionTelegram -Mensaje $msg
-
-    Start-Sleep -Milliseconds 500   # evita rate-limit de Telegram
-}
-
-
 #hago logoff
 $csrfResponse = Invoke-RestMethod -Uri "https://www.abonoteatro.com/api/auth/csrf" -Method GET -WebSession $session
 $csrfToken = $csrfResponse.csrfToken
