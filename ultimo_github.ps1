@@ -97,6 +97,10 @@ $page = 1
 $itemsPerPage = 36
 
 while ((Get-Date) -lt $tiempoLimite) {
+        # --- ESTO ES LO QUE TE FALTA: REINICIAR VARIABLES ---
+        $page = 1
+        $allEvents = @() 
+        # ----------------------------------------------------
         Write-Host "=== Iteración $iteracion - $(Get-Date -Format 'HH:mm:ss') ==="
         do {
             $response = Invoke-RestMethod -Uri "https://api.abonoteatro.com/api/web/events?page=$page&itemsPerPage=$itemsPerPage" `
