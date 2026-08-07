@@ -1,15 +1,12 @@
-$PTH_USR  = "c:\temp\Data.txt"
-$PTH_EVT  = "c:\temp\nombres_eventos.csv"
-$PTH_EVT_OLD = "c:\temp\cambios_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv"
+$loginUser = $env:ABONO_USER
+$loginPass = $env:ABONO_PASS
 
+$PTH_EVT  = "$PSScriptRoot/nombres_eventos.csv"
+$PTH_EVT_OLD = "$PSScriptRoot/nombres_eventos_old.csv"
+$PTH_USR  = "$PSScriptRoot/Data.txt"
 
-$baseUrl = "https://www.abonoteatro.com"
-
-$csvPath = "eventos.csv"
-$changesPath = "cambios_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv"
-
-$email = "alonso.toledo@gmail.com"
-$password = '3com$eumdH'
+$CFG_TKN = $env:TELEGRAM_TOKEN
+$URL_TGM  = "https://api.telegram.org/bot$CFG_TKN"
 
 Function Enviar-NotificacionTelegram {
     param($Mensaje)
