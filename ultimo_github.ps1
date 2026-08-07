@@ -8,6 +8,8 @@ $PTH_USR  = "$PSScriptRoot/Data.txt"
 $CFG_TKN = $env:TELEGRAM_TOKEN
 $URL_TGM  = "https://api.telegram.org/bot$CFG_TKN"
 
+$baseUrl = "https://www.abonoteatro.com"
+
 Function Enviar-NotificacionTelegram {
     param($Mensaje)
 
