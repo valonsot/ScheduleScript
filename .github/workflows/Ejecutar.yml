@@ -36,7 +36,15 @@ jobs:
          URL_BASE: ${{ secrets.URL_BASE }}
         run: |
           ./ultimo_github.ps1
-
+          
+      - name: Debug - localizar CSV
+        shell: pwsh
+        run: |
+          Write-Host "Directorio actual: $(Get-Location)"
+          Write-Host "PTH_EVT: $env:PTH_EVT"
+          Write-Host "Buscando eventos.csv en el repo..."
+          Get-ChildItem -Recurse -Filter "eventos.csv" -ErrorAction SilentlyContinue
+      
       - name: Commit CSV changes
         shell: pwsh
         run: |
