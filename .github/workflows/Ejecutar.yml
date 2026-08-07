@@ -21,10 +21,10 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Instalar Módulo Selenium
-        shell: pwsh
-        run: |
-          Install-Module -Name Selenium -Force -Scope CurrentUser
+      #- name: Instalar Módulo Selenium
+      #  shell: pwsh
+      #  run: |
+      #    Install-Module -Name Selenium -Force -Scope CurrentUser
 
       - name: Ejecutar Script de Tickets
         shell: pwsh
