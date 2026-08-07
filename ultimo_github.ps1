@@ -202,7 +202,7 @@ foreach ($evento in $nuevos) {
     $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$($evento.id)'>Pulsa aquí para ver más</a>"
 
     Write-Host $msg
-    Enviar-NotificacionTelegram -Mensaje $msg
+    #Enviar-NotificacionTelegram -Mensaje $msg
 
     Start-Sleep -Milliseconds 500   # evita rate-limit de Telegram
 }
