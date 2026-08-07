@@ -1,5 +1,5 @@
-$loginUser = $env:ABONO_USER
-$loginPass = $env:ABONO_PASS
+$email = $env:ABONO_USER
+$password = $env:ABONO_PASS
 
 $PTH_EVT  = "$PSScriptRoot/nombres_eventos.csv"
 $PTH_EVT_OLD = "$PSScriptRoot/cambios_$(Get-Date -Format 'yyyyMMdd_HHmmss').csv"
