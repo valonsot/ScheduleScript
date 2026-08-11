@@ -217,7 +217,7 @@ while ((Get-Date) -lt $tiempoLimite) {
                             
                             # 2. Creamos el texto en español
                             $culturaEsp = [System.Globalization.CultureInfo]::GetCultureInfo("es-ES")
-                            $textoLargo = $fechaDT.ToString("dddd d 'de' MMMM 'de' yyyy HH:mm", $culturaEsp)
+                            $textoLargo = $fechaDT.ToString("ddd d MMM yyyy HH:mm", $culturaEsp)
                             
                             # (Opcional) Poner la primera letra en mayúscula:
                             $textoLargo = (Get-Culture).TextInfo.ToTitleCase($textoLargo)
