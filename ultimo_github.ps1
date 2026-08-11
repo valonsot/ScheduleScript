@@ -195,32 +195,68 @@ while ((Get-Date) -lt $tiempoLimite) {
         
         # --- Notificar cada evento nuevo ---
         foreach ($evento in $nuevos) {
+            
+            $eventId = $evento.id
+            Write-Host "Extrayendo sesiones para: $($evento.name)" -ForegroundColor Cyan
+
+            $urlSesiones = "https://api.abonoteatro.com/api/web/events/$eventId/event_sessions_individuals"
+            
+            $fechasDisponibles = @()
+            try {
+                $respuesta = Invoke-RestMethod -Uri $urlSesiones -Method GET -Headers $apiHeaders
+                
+                # Accedemos a la propiedad correcta: eventSessionsIndividuals
+                $listaSesiones = $respuesta.eventSessionsIndividuals
+
+                foreach ($s in $listaSesiones) {
+                    # Solo añadimos la sesión si hay entradas disponibles (available > 0)
+                    if ($s.available -gt 0) {
+                        # Parseamos la fecha (vienen en formato dd/MM/yyyy HH:mm:ss)
+                        $fechaDT = [datetime]$s.startAt
+                        
+                        # Guardamos la fecha y el número de entradas que quedan
+                        $fechasDisponibles += $fechaDT
+                    }
+                }
+            } catch {
+                        # Esto nos dirá si es un error 401 (No autorizado), 403 (Prohibido) o 404 (No existe)
+                $statusCode = $_.Exception.Response.StatusCode.Value__
+                $errorMsg = $_.Exception.Message
+                Write-Warning "Error $statusCode en $eventId : $errorMsg"
         
+                # Si quieres ver el detalle técnico completo del error, descomenta la siguiente línea:
+                # $_.Exception | Format-List * -Force
+            }
+
+            # --- Formatear el listado para Telegram ---
+            $textoFechas = if ($fechasDisponibles.Count -gt 0) {
+                # Limitamos a las primeras 10 sesiones para no hacer el mensaje eterno
+                $resumen = $fechasDisponibles | Select-Object -First 10
+                $txt = $resumen -join "`n"
+                if ($fechasDisponibles.Count -gt 10) { $txt += "`n... y más fechas disponibles." }
+                $txt
+            } else {
+                "⚠️ No hay sesiones con entradas disponibles actualmente."
+            }
+            
+            $textoFechas = $fechasDisponibles -join "`n"
+
+            # --- Construir el mensaje ---
             $nombre  = [System.Net.WebUtility]::HtmlEncode($evento.name)
             $recinto = [System.Net.WebUtility]::HtmlEncode($evento.enclosureName)
-        
-            # Formatear fechas de forma legible
-            try {
-                $fechaInicio = ([datetime]$evento.startAt).ToString("dd/MM/yyyy HH:mm")
-                $fechaFin    = ([datetime]$evento.endAt).ToString("dd/MM/yyyy HH:mm")
-            } catch {
-                $fechaInicio = $evento.startAt
-                $fechaFin    = $evento.endAt
-            }
-        
+
             $msg  = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
-            $msg += "📌 <b>$nombre</b>`n`n"
-            $msg += "📍 <b>$recinto</b>`n`n"
-            $msg += "📅 <b>FECHAS:</b>`n"
-            $msg += "🗓 Desde: $fechaInicio`n"
-            $msg += "🗓 Hasta: $fechaFin`n`n"
-            $msg += "💶 Precio hasta: $($evento.priceMaxTicket) €`n`n"
-            $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$($evento.id)'>Pulsa aquí para ver más</a>"
-        
-            Write-Host $msg
+            $msg += "📌 <b>$nombre</b>`n"
+            $msg += "📍 <i>$recinto</i>`n`n"
+            $msg += "📅 <b>PRÓXIMAS SESIONES:</b>`n"
+            $msg += "<code>$textoFechas</code>`n`n"
+            $msg += "💶 Gastos: $($evento.priceMaxTicket) €`n"
+            $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$eventId'>RESERVAR AHORA</a>"
+
+            Write-Host "Enviando notificación..."
             Enviar-NotificacionTelegram -Mensaje $msg
-        
-            Start-Sleep -Milliseconds 500   # evita rate-limit de Telegram
+            
+            Start-Sleep -Milliseconds 500
         }
 
         $iteracion++
