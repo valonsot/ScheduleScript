@@ -274,7 +274,7 @@ while ((Get-Date) -lt $tiempoLimite) {
 
         # --- 6. Esperar entre 2:50 y 3:10 antes de la siguiente pasada, sin pasarnos del tiempo límite ---
         if ((Get-Date) -lt $tiempoLimite) {
-            $esperaSegundos = Get-Random -Minimum 170 -Maximum 191   # 2:50 a 3:10
+            $esperaSegundos = Get-Random -Minimum 170 -Maximum 180   # 2:50 a 3:00
             Write-Host "Esperando $esperaSegundos segundos hasta la próxima iteración..."
             Start-Sleep -Seconds $esperaSegundos
     }
