@@ -211,11 +211,22 @@ while ((Get-Date) -lt $tiempoLimite) {
                 foreach ($s in $listaSesiones) {
                     # Solo añadimos la sesión si hay entradas disponibles (available > 0)
                     if ($s.available -gt 0) {
-                        # Parseamos la fecha (vienen en formato dd/MM/yyyy HH:mm:ss)
-                        $fechaDT = [datetime]$s.startAt
-                        
-                        # Guardamos la fecha y el número de entradas que quedan
-                        $fechasDisponibles += $fechaDT
+                        try {
+                            # 1. Convertimos el string de la API a objeto fecha real
+                            $fechaDT = [datetime]$s.startAt
+                            
+                            # 2. Creamos el texto en español
+                            $culturaEsp = [System.Globalization.CultureInfo]::GetCultureInfo("es-ES")
+                            $textoLargo = $fechaDT.ToString("dddd d 'de' MMMM 'de' yyyy HH:mm", $culturaEsp)
+                            
+                            # (Opcional) Poner la primera letra en mayúscula:
+                            $textoLargo = (Get-Culture).TextInfo.ToTitleCase($textoLargo)
+                            
+                            # 3. Guardamos en el array con el dato de los tickets
+                            $fechasDisponibles += "🔹 $textoLargo ($($s.available) tickets)"
+                        } catch {
+                            Write-Warning "No se pudo procesar la fecha: $($s.startAt)"
+                        }
                     }
                 }
             } catch {
