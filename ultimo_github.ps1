@@ -14,20 +14,58 @@ Function Enviar-NotificacionTelegram {
     param($Mensaje)
 
     # Leemos el archivo y extraemos solo los números de cada @{id=XXXXXX}
+    # (-? permite también IDs de grupos, que son negativos)
     $chatIds = Get-Content $PTH_USR | ForEach-Object {
-        if ($_ -match 'id=(\d+)') { $Matches[1] }
+        if ($_ -match 'id=(-?\d+)') { $Matches[1] }
+    }
+
+    # Recortar a 4000 caracteres si el mensaje es más largo
+    $Max = 4000
+    $MensajeEnvio = [string]$Mensaje
+    if ($MensajeEnvio.Length -gt $Max) {
+        $MensajeEnvio = $MensajeEnvio.Substring(0, $Max)
+
+        # No dejar un emoji partido por la mitad
+        if (:IsHighSurrogate($MensajeEnvio[-1])) {
+            $MensajeEnvio = $MensajeEnvio.Substring(0, $MensajeEnvio.Length - 1)
+        }
+
+        # No dejar una etiqueta HTML cortada (por ejemplo "<b" o "</cod")
+        $ultimoAbre   = $MensajeEnvio.LastIndexOf('<')
+        $ultimoCierra = $MensajeEnvio.LastIndexOf('>')
+        if ($ultimoAbre -gt $ultimoCierra) {
+            $MensajeEnvio = $MensajeEnvio.Substring(0, $ultimoAbre)
+        }
+
+        # No dejar una entidad HTML cortada (por ejemplo "&am" en lugar de "&amp;")
+        $ultimoAmp     = $MensajeEnvio.LastIndexOf('&')
+        $ultimoPuntoYc = $MensajeEnvio.LastIndexOf(';')
+        if ($ultimoAmp -gt $ultimoPuntoYc) {
+            $MensajeEnvio = $MensajeEnvio.Substring(0, $ultimoAmp)
+        }
     }
 
     # Enviamos el mensaje a cada ID encontrado
     foreach ($id in $chatIds) {
         $payload = @{
             chat_id    = $id
-            text       = $Mensaje
+            text       = $MensajeEnvio
             parse_mode = "HTML"
         }
-        
-        # Envío directo sin rodeos
-        Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post -ContentType "application/json" -Body (ConvertTo-Json $payload)
+
+        # JSON en UTF-8 para que tildes, ñ y emojis lleguen bien
+        $bytes = [System.Text.Encoding]::UTF8.GetBytes(($payload | ConvertTo-Json -Depth 5))
+
+        try {
+            Invoke-RestMethod -Uri "$URL_TGM/sendMessage" -Method Post `
+                -ContentType "application/json; charset=utf-8" -Body $bytes -ErrorAction Stop | Out-Null
+            Write-Host "OK -> chat $id"
+        }
+        catch {
+            Write-Host "ERROR -> chat $id : $($_.ErrorDetails.Message)"
+        }
+
+        Start-Sleep -Milliseconds 100
     }
 }
 
