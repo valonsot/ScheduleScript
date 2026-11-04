@@ -135,22 +135,42 @@ $page = 1
 $itemsPerPage = 36
 
 while ((Get-Date) -lt $tiempoLimite) {
-        # --- ESTO ES LO QUE TE FALTA: REINICIAR VARIABLES ---
         $page = 1
-        $allEvents = @() 
-        # ----------------------------------------------------
-        Write-Host "=== Iteración $iteracion - $(Get-Date -Format 'HH:mm:ss') ==="
-        do {
+$allEvents = @()
+$maxIntentos = 3
+$descargaCompleta = $true
+# ----------------------------------------------------
+Write-Host "=== Iteración $iteracion - $(Get-Date -Format 'HH:mm:ss') ==="
+do {
+    $response = $null
+
+    # Hasta 3 intentos por página
+    for ($intento = 1; $intento -le $maxIntentos; $intento++) {
+        try {
             $response = Invoke-RestMethod -Uri "https://api.abonoteatro.com/api/web/events?page=$page&itemsPerPage=$itemsPerPage" `
-                -Method GET -Headers $apiHeaders
-        
-            $allEvents += $response.items
-            Write-Host "Página $page : $($response.items.Count) eventos (acumulado: $($allEvents.Count))"
-        
-            $page++
-            Start-Sleep -Seconds 2   # evita machacar la API
-        
-        } while ($response.items.Count -eq $itemsPerPage)
+                -Method GET -Headers $apiHeaders -TimeoutSec 60 -ErrorAction Stop
+            break   # Ha ido bien, salimos de los reintentos
+        }
+        catch {
+            Write-Host "Página $page - intento $intento/$maxIntentos fallido: $($_.Exception.Message)" -ForegroundColor Yellow
+            if ($intento -lt $maxIntentos) { Start-Sleep -Seconds (10 * $intento) }   # Espera 10 s, luego 20 s
+        }
+    }
+
+    # Si la página no se pudo descargar, se para la paginación pero no el script
+    if (-not $response) {
+        Write-Host "No se pudo descargar la página $page tras $maxIntentos intentos. Se continúa con $($allEvents.Count) eventos." -ForegroundColor Red
+        $descargaCompleta = $false
+        break
+    }
+
+    $allEvents += $response.items
+    Write-Host "Página $page : $($response.items.Count) eventos (acumulado: $($allEvents.Count))"
+
+    $page++
+    Start-Sleep -Seconds 2   # evita machacar la API
+
+    } while ($response.items.Count -eq $itemsPerPage)
         
         Write-Host "TOTAL FINAL: $($allEvents.Count) eventos"
         
