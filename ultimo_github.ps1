@@ -251,8 +251,13 @@ do {
         
         # --- 8. Guardar cambios si los hay ---
         if ($changes.Count -gt 0) {
-            $changes | Export-Csv -Path $PTH_EVT_OLD -NoTypeInformation -Encoding UTF8 -Delimiter ";"
-            Write-Host "Cambios detectados: $($changes.Count) (Nuevos: $($nuevos.Count), Eliminados: $($eliminados.Count)) -> guardado en $PTH_EVT_OLD"
+            if ($allEvents.Count -eq 0 -or -not $descargaCompleta) {
+                Write-Host "❌ ERROR CRÍTICO: La descarga falló o devolvió 0 eventos. Se aborta la actualización para proteger el CSV actual." -ForegroundColor Red
+            }    
+            else{
+                $changes | Export-Csv -Path $PTH_EVT_OLD -NoTypeInformation -Encoding UTF8 -Delimiter ";"
+                Write-Host "Cambios detectados: $($changes.Count) (Nuevos: $($nuevos.Count), Eliminados: $($eliminados.Count)) -> guardado en $PTH_EVT_OLD"
+            }
         } else {
             Write-Host "No hay cambios respecto al snapshot anterior."
         }
