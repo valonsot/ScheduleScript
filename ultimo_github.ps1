@@ -158,13 +158,6 @@ do {
         }
     }
 
-    # Si la página no se pudo descargar, se para la paginación pero no el script
-    if (-not $response) {
-        Write-Host "No se pudo descargar la página $page tras $maxIntentos intentos. Se continúa con $($allEvents.Count) eventos." -ForegroundColor Red
-        $descargaCompleta = $false
-        break
-    }
-
     if (-not $descargaCompleta) {
     Write-Host "❌ ADVERTENCIA CRÍTICA: La descarga de la API estuvo incompleta. Se aborta la actualización para proteger el CSV." -ForegroundColor Red
     
@@ -181,6 +174,24 @@ do {
     Start-Sleep -Seconds 2   # evita machacar la API
 
     } while ($response.items.Count -eq $itemsPerPage)
+
+    # =========================================================================
+    # 🛡️ BARRERA DE SEGURIDAD (FUERA del bucle do-while y ANTES de tocar CSVs)
+    # =========================================================================
+    if (-not $descargaCompleta) {
+        Write-Host "❌ ADVERTENCIA CRÍTICA: La descarga de la API estuvo incompleta. Se aborta esta iteración y NO se toca el CSV." -ForegroundColor Red
+        
+        # Opcional: Avisar a Telegram de que hubo un corte de red pero se protegió el archivo
+        # Enviar-NotificacionTelegram -Mensaje "⚠️ El bot omitió la actualización de Abonoteatro por un fallo temporal de red. CSV protegido."
+
+        $iteracion++
+        # Usamos 'continue' para saltar esta pasada e ir a la espera de la siguiente iteración,
+        # o puedes usar 'exit 0' si prefieres que el script de GitHub Actions finalice por completo aquí.
+        Start-Sleep -Seconds 60
+        exit 0
+    }
+    # =========================================================================
+
         
         Write-Host "TOTAL FINAL: $($allEvents.Count) eventos"
         
