@@ -26,7 +26,8 @@ Function Enviar-NotificacionTelegram {
         $MensajeEnvio = $MensajeEnvio.Substring(0, $Max)
 
         # No dejar un emoji partido por la mitad
-        if (:IsHighSurrogate($MensajeEnvio[-1])) {
+        
+        if ([char]::IsHighSurrogate($MensajeEnvio[-1]))  {
             $MensajeEnvio = $MensajeEnvio.Substring(0, $MensajeEnvio.Length - 1)
         }
 
