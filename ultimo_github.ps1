@@ -349,7 +349,7 @@ do {
             $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$eventId'>RESERVAR AHORA</a>"
 
             Write-Host "Enviando notificación..."
-            Enviar-NotificacionTelegram -Mensaje $msg
+            #Enviar-NotificacionTelegram -Mensaje $msg
             
             Start-Sleep -Milliseconds 500
         }
