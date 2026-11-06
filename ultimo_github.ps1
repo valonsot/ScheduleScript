@@ -182,7 +182,7 @@ do {
         Write-Host "❌ ADVERTENCIA CRÍTICA: La descarga de la API estuvo incompleta. Se aborta esta iteración y NO se toca el CSV." -ForegroundColor Red
         
         # Opcional: Avisar a Telegram de que hubo un corte de red pero se protegió el archivo
-        # Enviar-NotificacionTelegram -Mensaje "⚠️ El bot omitió la actualización de Abonoteatro por un fallo temporal de red. CSV protegido."
+        #  -Mensaje "⚠️ El bot omitió la actualización de Abonoteatro por un fallo temporal de red. CSV protegido."
 
         $iteracion++
         # Usamos 'continue' para saltar esta pasada e ir a la espera de la siguiente iteración,
@@ -349,7 +349,7 @@ do {
             $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$eventId'>RESERVAR AHORA</a>"
 
             Write-Host "Enviando notificación..."
-            #Enviar-NotificacionTelegram -Mensaje $msg
+            Enviar-NotificacionTelegram -Mensaje $msg
             
             Start-Sleep -Milliseconds 500
         }
