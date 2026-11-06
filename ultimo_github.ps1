@@ -276,84 +276,96 @@ do {
         # --- 9. Sobrescribir eventos.csv con el snapshot actualizado ---
         $currentData | Export-Csv -Path $PTH_EVT -NoTypeInformation -Encoding UTF8 -Delimiter ";"
         Write-Host "eventos.csv actualizado con $($currentData.Count) eventos."
-        
+
+        # =========================================================================
+        # 🛡️ BARRERA DE SEGURIDAD: LÍMITE MÁXIMO DE CAMBIOS A NOTIFICAR
+        # =========================================================================
+        $limiteMaximoNotificaciones = 20
+
+        if ($nuevos.Count -gt $limiteMaximoNotificaciones) {
+            Write-Host "⚠️ ADVERTENCIA: Hay $($nuevos.Count) eventos nuevos detectados (supera el límite de $limiteMaximoNotificaciones). Se omite el envío masivo a Telegram para evitar spam." -ForegroundColor Yellow
+            
+            # (Opcional) Puedes mandar un único aviso a Telegram diciendo que se omitió el spam
+            # Enviar-NotificacionTelegram -Mensaje "⚠️ Se detectaron $($nuevos.Count) cambios de golpe en Abonoteatro. Por seguridad, se ha bloqueado la notificación masiva."
+        }
+        else {
         # --- Notificar cada evento nuevo ---
-        foreach ($evento in $nuevos) {
-            
-            $eventId = $evento.id
-            Write-Host "Extrayendo sesiones para: $($evento.name)" -ForegroundColor Cyan
-
-            $urlSesiones = "https://api.abonoteatro.com/api/web/events/$eventId/event_sessions_individuals"
-            
-            $fechasDisponibles = @()
-            try {
-                $respuesta = Invoke-RestMethod -Uri $urlSesiones -Method GET -Headers $apiHeaders
+            foreach ($evento in $nuevos) {
                 
-                # Accedemos a la propiedad correcta: eventSessionsIndividuals
-                $listaSesiones = $respuesta.eventSessionsIndividuals
-
-                foreach ($s in $listaSesiones) {
-                    # Solo añadimos la sesión si hay entradas disponibles (available > 0)
-                    if ($s.available -gt 0) {
-                        try {
-                            # 1. Convertimos el string de la API a objeto fecha real
-                            $fechaDT = [datetime]$s.startAt
-                            
-                            # 2. Creamos el texto en español
-                            $culturaEsp = [System.Globalization.CultureInfo]::GetCultureInfo("es-ES")
-                            $textoLargo = $fechaDT.ToString("ddd d MMM yyyy HH:mm", $culturaEsp)
-                            
-                            # (Opcional) Poner la primera letra en mayúscula:
-                            $textoLargo = (Get-Culture).TextInfo.ToTitleCase($textoLargo)
-                            
-                            # 3. Guardamos en el array con el dato de los tickets
-                            $fechasDisponibles += "🔹 $textoLargo ($($s.available) tickets)"
-                        } catch {
-                            Write-Warning "No se pudo procesar la fecha: $($s.startAt)"
+                $eventId = $evento.id
+                Write-Host "Extrayendo sesiones para: $($evento.name)" -ForegroundColor Cyan
+    
+                $urlSesiones = "https://api.abonoteatro.com/api/web/events/$eventId/event_sessions_individuals"
+                
+                $fechasDisponibles = @()
+                try {
+                    $respuesta = Invoke-RestMethod -Uri $urlSesiones -Method GET -Headers $apiHeaders
+                    
+                    # Accedemos a la propiedad correcta: eventSessionsIndividuals
+                    $listaSesiones = $respuesta.eventSessionsIndividuals
+    
+                    foreach ($s in $listaSesiones) {
+                        # Solo añadimos la sesión si hay entradas disponibles (available > 0)
+                        if ($s.available -gt 0) {
+                            try {
+                                # 1. Convertimos el string de la API a objeto fecha real
+                                $fechaDT = [datetime]$s.startAt
+                                
+                                # 2. Creamos el texto en español
+                                $culturaEsp = [System.Globalization.CultureInfo]::GetCultureInfo("es-ES")
+                                $textoLargo = $fechaDT.ToString("ddd d MMM yyyy HH:mm", $culturaEsp)
+                                
+                                # (Opcional) Poner la primera letra en mayúscula:
+                                $textoLargo = (Get-Culture).TextInfo.ToTitleCase($textoLargo)
+                                
+                                # 3. Guardamos en el array con el dato de los tickets
+                                $fechasDisponibles += "🔹 $textoLargo ($($s.available) tickets)"
+                            } catch {
+                                Write-Warning "No se pudo procesar la fecha: $($s.startAt)"
+                            }
                         }
                     }
+                } catch {
+                            # Esto nos dirá si es un error 401 (No autorizado), 403 (Prohibido) o 404 (No existe)
+                    $statusCode = $_.Exception.Response.StatusCode.Value__
+                    $errorMsg = $_.Exception.Message
+                    Write-Warning "Error $statusCode en $eventId : $errorMsg"
+            
+                    # Si quieres ver el detalle técnico completo del error, descomenta la siguiente línea:
+                    # $_.Exception | Format-List * -Force
                 }
-            } catch {
-                        # Esto nos dirá si es un error 401 (No autorizado), 403 (Prohibido) o 404 (No existe)
-                $statusCode = $_.Exception.Response.StatusCode.Value__
-                $errorMsg = $_.Exception.Message
-                Write-Warning "Error $statusCode en $eventId : $errorMsg"
-        
-                # Si quieres ver el detalle técnico completo del error, descomenta la siguiente línea:
-                # $_.Exception | Format-List * -Force
+    
+                # --- Formatear el listado para Telegram ---
+                $textoFechas = if ($fechasDisponibles.Count -gt 0) {
+                    # Limitamos a las primeras 10 sesiones para no hacer el mensaje eterno
+                    $resumen = $fechasDisponibles | Select-Object -First 10
+                    $txt = $resumen -join "`n"
+                    if ($fechasDisponibles.Count -gt 10) { $txt += "`n... y más fechas disponibles." }
+                    $txt
+                } else {
+                    "⚠️ No hay sesiones con entradas disponibles actualmente."
+                }
+                
+                $textoFechas = $fechasDisponibles -join "`n"
+    
+                # --- Construir el mensaje ---
+                $nombre  = [System.Net.WebUtility]::HtmlEncode($evento.name)
+                $recinto = [System.Net.WebUtility]::HtmlEncode($evento.enclosureName)
+    
+                $msg  = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
+                $msg += "📌 <b>$nombre</b>`n"
+                $msg += "📍 <i>$recinto</i>`n`n"
+                $msg += "📅 <b>PRÓXIMAS SESIONES:</b>`n"
+                $msg += "<code>$textoFechas</code>`n`n"
+                $msg += "💶 Gastos: $($evento.priceMaxTicket) €`n"
+                $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$eventId'>RESERVAR AHORA</a>"
+    
+                Write-Host "Enviando notificación..."
+                Enviar-NotificacionTelegram -Mensaje $msg
+                
+                Start-Sleep -Milliseconds 500
             }
-
-            # --- Formatear el listado para Telegram ---
-            $textoFechas = if ($fechasDisponibles.Count -gt 0) {
-                # Limitamos a las primeras 10 sesiones para no hacer el mensaje eterno
-                $resumen = $fechasDisponibles | Select-Object -First 10
-                $txt = $resumen -join "`n"
-                if ($fechasDisponibles.Count -gt 10) { $txt += "`n... y más fechas disponibles." }
-                $txt
-            } else {
-                "⚠️ No hay sesiones con entradas disponibles actualmente."
-            }
-            
-            $textoFechas = $fechasDisponibles -join "`n"
-
-            # --- Construir el mensaje ---
-            $nombre  = [System.Net.WebUtility]::HtmlEncode($evento.name)
-            $recinto = [System.Net.WebUtility]::HtmlEncode($evento.enclosureName)
-
-            $msg  = "<b>🎭 NUEVO EVENTO DETECTADO</b>`n`n"
-            $msg += "📌 <b>$nombre</b>`n"
-            $msg += "📍 <i>$recinto</i>`n`n"
-            $msg += "📅 <b>PRÓXIMAS SESIONES:</b>`n"
-            $msg += "<code>$textoFechas</code>`n`n"
-            $msg += "💶 Gastos: $($evento.priceMaxTicket) €`n"
-            $msg += "🔗 <a href='https://www.abonoteatro.com/evento/$eventId'>RESERVAR AHORA</a>"
-
-            Write-Host "Enviando notificación..."
-            Enviar-NotificacionTelegram -Mensaje $msg
-            
-            Start-Sleep -Milliseconds 500
         }
-
         $iteracion++
 
         # --- 6. Esperar entre 2:50 y 3:10 antes de la siguiente pasada, sin pasarnos del tiempo límite ---
