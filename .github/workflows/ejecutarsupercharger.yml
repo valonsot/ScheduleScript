@@ -47,10 +47,14 @@ jobs:
           $status = git status --porcelain
           if ($status) {
               Write-Host "Sincronizando CSV, txt y logs finales con GitHub..."
+              
+              # 1. PRIMERO nos traemos los cambios de remoto con rebase (evita el [rejected])
+              git pull origin main --rebase || echo "No se pudo hacer pull, continuando..."
+              
+              # 2. SEGUNDO hacemos el commit de nuestros archivos locales
               git commit -m "Auto-cleanup y log final: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
               
-              # Sincronizamos los cambios remotos antes de hacer push para evitar el rechazo
-              git pull origin main --rebase
+              # 3. TERCERO subimos todo con push
               git push
           } else {
               Write-Host "Sin cambios relevantes al finalizar."
