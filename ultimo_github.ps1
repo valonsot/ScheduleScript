@@ -165,6 +165,15 @@ do {
         break
     }
 
+    if (-not $descargaCompleta) {
+    Write-Host "❌ ADVERTENCIA CRÍTICA: La descarga de la API estuvo incompleta. Se aborta la actualización para proteger el CSV." -ForegroundColor Red
+    
+    # Opcional: Envías un aviso único a Telegram de que hubo un fallo de red
+    # Enviar-Telegram "⚠️ El bot omitió la actualización: falló una página de Abonoteatro."
+    
+    exit 0  # Sale del script sin tocar el CSV ni mandar 100 alertas falsas
+    }
+    
     $allEvents += $response.items
     Write-Host "Página $page : $($response.items.Count) eventos (acumulado: $($allEvents.Count))"
 
